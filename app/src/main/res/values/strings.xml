@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Stockholm Guide1</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="saturnus_text">
+        "CAFÉ SATURNUS"
+        "People go to Saturnus to drink large bowls of hot latte with the legendary cinnamon rolls – they are the biggest, and they’ve been described in the press as the best in town.
+        A café and lunch spot with inspiration from France, where the decor has warm colors, a stone's throw from Stureplan and close to cultural attractions such as the Zita movie theater and the National Library of Sweden.
+
+
+    </string>
+</resources>
