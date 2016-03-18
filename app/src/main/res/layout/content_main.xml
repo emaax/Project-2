@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:text="ATTRACTIONS"
         android:id="@+id/button_attractions"
-        android:layout_below="@+id/button_resturants"
+
          />
 
     <Button
@@ -58,14 +58,14 @@
         android:layout_height="wrap_content"
         android:text="SHOPPING"
         android:id="@+id/button_shopping"
-        android:layout_below="@+id/button_attractions" />
+         />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="HOTELS"
         android:id="@+id/button_hotels"
-        android:layout_below="@+id/button_shopping"
+
 
         />
 

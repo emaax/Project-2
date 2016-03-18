@@ -31,13 +31,13 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
 //declaring the one instance, the one object, of NeighborhoodSQLiteOpenHelper. This is the one thing that all other classes will access with getInstance
     private static NeighborhoodSQLiteOpenHelper mInstance;
 //Declaring (dgiving the array a name and  deciding  varaibles and)  an array of the Neighborhood column names.. It only  holds the column names
-    public static final String[] NEIGHBORHOOD_COLUMNS = {COL_ID,COL_ITEM_NAME, COL_ITEM_TYPE, COL_ITEM_ADDRESS, COL_ITEM_LOCATION, COL_ITEM_DESCRIPTION};
+    public static final String[] NEIGHBORHOOD_COLUMNS = {COL_ID, COL_ITEM_TYPE,COL_ITEM_NAME, COL_ITEM_ADDRESS, COL_ITEM_LOCATION, COL_ITEM_DESCRIPTION};
 // Declaring the string the holds the Sql call that will create our table
     private static final String CREATE_NEIGHBORHOOD_LIST_TABLE = "CREATE TABLE " + NEIGHBORHOOD_LIST_TABLE_NAME +
                     "(" +
                     COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COL_ITEM_NAME + " TEXT, " +
                     COL_ITEM_TYPE + " TEXT, " +
+                    COL_ITEM_NAME + " TEXT, " +
                     COL_ITEM_ADDRESS + " TEXT, " +
                     COL_ITEM_LOCATION + " TEXT, " +
                     COL_ITEM_DESCRIPTION + " TEXT)";
@@ -66,8 +66,8 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
         //
 
         ContentValues values = new ContentValues();
-        values.put(COL_ITEM_NAME, name);
         values.put(COL_ITEM_TYPE, type);
+        values.put(COL_ITEM_NAME, name);
         values.put(COL_ITEM_ADDRESS, address);
         values.put(COL_ITEM_LOCATION, location);
         values.put(COL_ITEM_DESCRIPTION, description);
@@ -101,14 +101,14 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
 
-    public Cursor searchNeighborhoodList(String query){
+    public Cursor searchNeighborhoodByType(String type){
         SQLiteDatabase db = this.getReadableDatabase();
 //like searches for things that similar to
         //we are questioning the database to look for col_item_names that are like the varaible query
         Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME, // a. table
                 NEIGHBORHOOD_COLUMNS, // b. column names //from  what columns do we want answer
-                COL_ITEM_NAME + " LIKE ?", // c. selections //
-                new String[]{"%" + query + "%"}, // d. selections args
+                COL_ITEM_TYPE + " = ?", // c. selections //
+                new String[]{type}, // d. selections args
                 null, // e. group by
                 null, // f. having
                 null, // g. order by
@@ -116,6 +116,26 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
 
         return cursor;
     }
+
+    public String getTypeById(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME,
+                new String[]{COL_ITEM_TYPE},
+                COL_ID+" = ?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null,
+                null);
+
+        if(cursor.moveToFirst()){
+            return cursor.getString(cursor.getColumnIndex(COL_ITEM_TYPE));
+        } else {
+            return "No Type Found"; //or "No Description Found";
+        }
+    }
+
 
     public String getNameById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -137,24 +157,6 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
 
-    public String getTypeById(int id){
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME,
-                new String[]{COL_ITEM_TYPE},
-                COL_ID+" = ?",
-                new String[]{String.valueOf(id)},
-                null,
-                null,
-                null,
-                null);
-
-        if(cursor.moveToFirst()){
-            return cursor.getString(cursor.getColumnIndex(COL_ITEM_TYPE));
-        } else {
-            return "No Type Found"; //or "No Description Found";
-        }
-    }
 
     public String getAddressById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
