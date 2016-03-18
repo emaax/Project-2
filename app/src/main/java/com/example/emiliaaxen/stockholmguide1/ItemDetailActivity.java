@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class ItemDetailActivity extends AppCompatActivity {
 
     TextView textViewItemTitle;
-    TextView textViewItemAdress;
+    TextView textViewItemAddress;
     TextView textViewItemDescription;
 
     @Override
@@ -23,7 +23,7 @@ public class ItemDetailActivity extends AppCompatActivity {
 
 
         textViewItemTitle = (TextView) findViewById(R.id.item_name_text_view);
-        textViewItemAdress= (TextView) findViewById(R.id.item_adress_text_view);
+        textViewItemAddress= (TextView) findViewById(R.id.item_address_text_view);
         textViewItemDescription = (TextView) findViewById(R.id.item_description_text_view);
 
 

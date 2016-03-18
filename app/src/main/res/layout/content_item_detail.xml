@@ -1,34 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ItemDetailActivity"
     tools:showIn="@layout/activity_item_detail">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:id="@+id/item_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/stockholm_town"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/item_name_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_gravity="left|bottom"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:layout_margin="12dp" />
+
+        </FrameLayout>
 
         <TextView
-            android:id="@+id/item_name_text_view"
+            android:id="@+id/item_address_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin" />
-        <TextView
-            android:id="@+id/item_adress_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin" />
+            android:layout_margin="@dimen/text_margin"
+            android:text="TEST"
+            />
 
         <TextView
             android:id="@+id/item_description_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin" />
+
+
     </LinearLayout>
 
-</android.support.v4.widget.NestedScrollView>
+

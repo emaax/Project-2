@@ -43,8 +43,7 @@
         android:layout_height="wrap_content"
         android:text="RESTURANTS"
         android:id="@+id/button_resturants"
-        android:layout_alignLeft="@+id/imageButton"
-        android:layout_alignStart="@+id/imageButton" />
+         />
 
     <Button
         android:layout_width="wrap_content"
@@ -52,30 +51,25 @@
         android:text="ATTRACTIONS"
         android:id="@+id/button_attractions"
         android:layout_below="@+id/button_resturants"
-        android:layout_alignLeft="@+id/button_resturants"
-        android:layout_alignStart="@+id/button_resturants" />
+         />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SHOPPING"
         android:id="@+id/button_shopping"
-        android:layout_below="@+id/button_attractions"
-        android:layout_alignLeft="@+id/button_attractions"
-        android:layout_alignStart="@+id/button_attractions"
-        />
+        android:layout_below="@+id/button_attractions" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="HOTELS"
         android:id="@+id/button_hotels"
-        android:layout_below="@+id/button_attractions"
-        android:layout_alignLeft="@+id/button_attractions"
-        android:layout_alignStart="@+id/button_attractions"
+        android:layout_below="@+id/button_shopping"
+
         />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+
+
+
 </LinearLayout>
