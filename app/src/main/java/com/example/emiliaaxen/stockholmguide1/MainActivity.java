@@ -64,10 +64,10 @@ public class MainActivity extends AppCompatActivity {
         helper.addItem("Berns", TYPE_HOTELS,"Näckstramsgatan 8, Stockholm", "Ostermalm", getString(R.string.berns),R.drawable.berns);
 
 
-        helper.getNeighborhoodListByType(TYPE_RESTAURANTS);
-        helper.getNeighborhoodListByType(TYPE_ATTRACTIONS);
-        helper.getNeighborhoodListByType(TYPE_SHOPPING);
-        helper.getNeighborhoodListByType(TYPE_HOTELS);
+        helper.searchNeighborhoodByType(TYPE_RESTAURANTS);
+        helper.searchNeighborhoodByType(TYPE_ATTRACTIONS);
+        helper.searchNeighborhoodByType(TYPE_SHOPPING);
+        helper.searchNeighborhoodByType(TYPE_HOTELS);
 
         restaurantsButton = (Button) findViewById(R.id.button_restaurants);
         attractionsButton = (Button) findViewById(R.id.button_attractions);

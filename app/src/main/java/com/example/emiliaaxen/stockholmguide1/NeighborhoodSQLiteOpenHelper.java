@@ -46,7 +46,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
             COL_ITEM_ADDRESS + " TEXT, " +
             COL_ITEM_LOCATION + " TEXT, " +
             COL_ITEM_DESCRIPTION + " TEXT, " +
-            COL_ITEM_IMAGE + "INTEGER)";
+            COL_ITEM_IMAGE + " INTEGER)";
 
     // this is our constructur for SQLiteOpenHelper
     public NeighborhoodSQLiteOpenHelper(Context context) {
@@ -111,10 +111,9 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
 
     //gets the cursor to send the NBlist by type, i.e gets de data for all of the columns, based on types
 
-    public Cursor getNeighborhoodListByType(String query) {
+    public Cursor searchNeighborhoodByType(String query) {
         SQLiteDatabase db = this.getReadableDatabase();
-//like searches for things that similar to
-        //we are questioning the database to look for col_item_names that are like the varaible query
+
         Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME, // a. table
                 NEIGHBORHOOD_COLUMNS, // b. column names //from  what columns do we want answer
                 COL_ITEM_TYPE + " = ?", // c. selections //
@@ -225,7 +224,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
             return "No Description Found";
         }
     }
-    public String getImageById(int id){
+    public int getImageById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME,
@@ -238,9 +237,9 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
                 null);
 
         if(cursor.moveToFirst()){
-            return cursor.getString(cursor.getColumnIndex(COL_ITEM_IMAGE));
+            return cursor.getInt(cursor.getColumnIndex(COL_ITEM_IMAGE));
         } else {
-            return "No Description Found";
+            return 0;
         }
     }
 

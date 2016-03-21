@@ -40,7 +40,7 @@ public class ResultsActivity extends AppCompatActivity {
 
         String type = getIntent().getStringExtra(MainActivity.KEY_TYPE);
 
-        cursor = mHelper.getNeighborhoodListByType(type);
+        cursor = mHelper.searchNeighborhoodByType(type);
 
         // Gets the query from the database helper called getNeighborhoodList, which is a cursor of all of the data                         SHOULD IT BE NAME
 
@@ -70,8 +70,8 @@ public class ResultsActivity extends AppCompatActivity {
         // Associates the  searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
-                (SearchView) menu.findItem(R.id.search).getActionView();
+        android.support.v7.widget.SearchView searchView =
+                (android.support.v7.widget.SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
 
@@ -86,7 +86,7 @@ public class ResultsActivity extends AppCompatActivity {
     private void handleIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            Cursor cursor = mHelper.getNeighborhoodListByType(query);
+            Cursor cursor = mHelper.searchNeighborhoodByType(query);
             mCursorAdapter.changeCursor(cursor);
             mCursorAdapter.notifyDataSetChanged();
         }

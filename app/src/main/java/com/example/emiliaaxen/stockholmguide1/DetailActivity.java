@@ -42,7 +42,10 @@ public class DetailActivity extends AppCompatActivity {
 
           if(id >= 0){
 
-
+              int image = helper.getImageById(id);
+              imageViewItemImage =(ImageView) findViewById(R.id.item_image_view);
+              imageViewItemImage.setBackgroundResource(image);
+              
             String type = helper.getTypeById(id);
             textViewItemType = (TextView)findViewById(R.id.item_type_text_view);
             textViewItemType.setText(type);
@@ -63,9 +66,7 @@ public class DetailActivity extends AppCompatActivity {
             textViewItemDescription = (TextView) findViewById(R.id.item_description_text_view);
             textViewItemDescription.setText(description);
 
-            String image = helper.getImageById(id);
-              imageViewItemImage =(ImageView) findViewById(R.id.item_image_view);
-              imageViewItemImage.setBackground(Drawable.createFromPath(image));
+
 
         }
 
