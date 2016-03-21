@@ -29,21 +29,26 @@ public class ResultsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
 
         //Gets an instance of your database helper
         mNeighborhoodListView = (ListView)findViewById(R.id.neighborhood_list_view);
         mHelper = NeighborhoodSQLiteOpenHelper.getInstance(ResultsActivity.this);
 
 
-        cursor = mHelper.getNeighborhoodList();
+        String type = getIntent().getStringExtra(MainActivity.KEY_TYPE);
+
+        cursor = mHelper.getNeighborhoodListByType(type);
 
         // Gets the query from the database helper called getNeighborhoodList, which is a cursor of all of the data                         SHOULD IT BE NAME
-        mCursorAdapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1,cursor,new String[]{NeighborhoodSQLiteOpenHelper.COL_ITEM_TYPE},new int[]{android.R.id.text1},0);
+
+        mCursorAdapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_activated_1,cursor,new String[]{NeighborhoodSQLiteOpenHelper.COL_ITEM_NAME},new int[]{android.R.id.text1},0);
         mNeighborhoodListView.setAdapter(mCursorAdapter);
 
 
-        /*Gets the data for the individual item when it's being clicked on.
-        This is done by passing the id column value into
+        /*Gets the data for the individual item when it's being clicked on.This is done by passing the id column value into
         the intent in the ResultsActivity in the item click listener.*/
         mNeighborhoodListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -62,7 +67,7 @@ public class ResultsActivity extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_results, menu);
 
-        // Associate searchable configuration with the SearchView
+        // Associates the  searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView =
@@ -81,7 +86,7 @@ public class ResultsActivity extends AppCompatActivity {
     private void handleIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            Cursor cursor = mHelper.searchNeighborhoodByType(query);
+            Cursor cursor = mHelper.getNeighborhoodListByType(query);
             mCursorAdapter.changeCursor(cursor);
             mCursorAdapter.notifyDataSetChanged();
         }
@@ -89,8 +94,6 @@ public class ResultsActivity extends AppCompatActivity {
 
 
 
-Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

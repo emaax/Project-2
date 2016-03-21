@@ -1,11 +1,13 @@
 package com.example.emiliaaxen.stockholmguide1;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DetailActivity extends AppCompatActivity {
@@ -15,6 +17,8 @@ public class DetailActivity extends AppCompatActivity {
     TextView textViewItemAddress;
     TextView textViewItemLocation;
     TextView textViewItemDescription;
+    ImageView imageViewItemImage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,17 +27,20 @@ public class DetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         textViewItemType = (TextView)findViewById(R.id.item_type_text_view);
         textViewItemName = (TextView) findViewById(R.id.item_name_text_view);
         textViewItemAddress= (TextView) findViewById(R.id.item_address_text_view);
         textViewItemLocation = (TextView) findViewById(R.id.item_location_text_view);
         textViewItemDescription = (TextView) findViewById(R.id.item_description_text_view);
+        imageViewItemImage = (ImageView) findViewById(R.id.item_image_view);
 
         NeighborhoodSQLiteOpenHelper helper = NeighborhoodSQLiteOpenHelper.getInstance(DetailActivity.this);
 
         int id = getIntent().getIntExtra("id",-1);
 
-        if(id >= 0){
+
+          if(id >= 0){
 
 
             String type = helper.getTypeById(id);
@@ -55,6 +62,10 @@ public class DetailActivity extends AppCompatActivity {
             String description = helper.getDescriptionById(id);
             textViewItemDescription = (TextView) findViewById(R.id.item_description_text_view);
             textViewItemDescription.setText(description);
+
+            String image = helper.getImageById(id);
+              imageViewItemImage =(ImageView) findViewById(R.id.item_image_view);
+              imageViewItemImage.setBackground(Drawable.createFromPath(image));
 
         }
 
