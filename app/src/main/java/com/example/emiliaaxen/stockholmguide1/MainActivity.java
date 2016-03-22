@@ -71,13 +71,13 @@ public class MainActivity extends AppCompatActivity {
 
         helper.addItem("Hotel Diplomat", TYPE_HOTELS,"Strandvagen 7C, Stockholm","Ostermalm", getString(R.string.diplomat),R.drawable.diplomat);
         helper.addItem("Grand Hôtel", TYPE_HOTELS, "Sodra Blasieholmshamnen 8, Stockholm", "Ostermalm", getString(R.string.grand),R.drawable.grandhotel);
-        helper.addItem("Berns", TYPE_HOTELS,"Näckstramsgatan 8, Stockholm", "Ostermalm", getString(R.string.berns),R.drawable.berns);
+        helper.addItem("Berns", TYPE_HOTELS,"Nackstramsgatan 8, Stockholm", "Ostermalm", getString(R.string.berns),R.drawable.berns);
 
 
-        helper.searchNeighborhoodByType(TYPE_RESTAURANTS);
+        /*helper.searchNeighborhoodByType(TYPE_RESTAURANTS);
         helper.searchNeighborhoodByType(TYPE_ATTRACTIONS);
         helper.searchNeighborhoodByType(TYPE_SHOPPING);
-        helper.searchNeighborhoodByType(TYPE_HOTELS);
+        helper.searchNeighborhoodByType(TYPE_HOTELS);*/
 
         restaurantsButton = (Button) findViewById(R.id.button_restaurants);
         attractionsButton = (Button) findViewById(R.id.button_attractions);

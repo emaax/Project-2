@@ -48,7 +48,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
             COL_ITEM_LOCATION + " TEXT, " +
             COL_ITEM_DESCRIPTION + " TEXT, " +
             COL_ITEM_IMAGE + " INTEGER, " +
-            COL_ITEM_FAV + "BOOLEAN )";
+            COL_ITEM_FAV + " BOOLEAN )";
 
     // this is our constructur for SQLiteOpenHelper
     public NeighborhoodSQLiteOpenHelper(Context context) {

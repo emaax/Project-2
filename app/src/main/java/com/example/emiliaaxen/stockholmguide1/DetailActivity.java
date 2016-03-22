@@ -94,6 +94,8 @@ public class DetailActivity extends AppCompatActivity {
                 } else {
                     itemIsClickedAsFavorite = 0;
                     fab.setImageResource(R.drawable.item_not_favorite);
+                    Snackbar.make(view, "Removed from Favorites", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
                 }
 
 
