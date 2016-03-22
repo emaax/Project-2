@@ -1,6 +1,5 @@
 package com.example.emiliaaxen.stockholmguide1;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +17,7 @@ public class DetailActivity extends AppCompatActivity {
     TextView textViewItemLocation;
     TextView textViewItemDescription;
     ImageView imageViewItemImage;
+    private int itemIsClickedAsFavorite = 0;
 
 
     @Override
@@ -28,6 +28,7 @@ public class DetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         textViewItemType = (TextView)findViewById(R.id.item_type_text_view);
         textViewItemName = (TextView) findViewById(R.id.item_name_text_view);
@@ -36,9 +37,10 @@ public class DetailActivity extends AppCompatActivity {
         textViewItemDescription = (TextView) findViewById(R.id.item_description_text_view);
         imageViewItemImage = (ImageView) findViewById(R.id.item_image_view);
 
+
         NeighborhoodSQLiteOpenHelper helper = NeighborhoodSQLiteOpenHelper.getInstance(DetailActivity.this);
 
-        int id = getIntent().getIntExtra("id",-1);
+        int id = getIntent().getIntExtra("id", -1);
 
 
           if(id >= 0){
@@ -53,19 +55,26 @@ public class DetailActivity extends AppCompatActivity {
 
             String name = helper.getNameById(id);
             textViewItemName = (TextView) findViewById(R.id.item_name_text_view);
-            textViewItemName.setText(name);
+            textViewItemName.setText("Name: "+name);
 
             String address = helper.getAddressById(id);
             textViewItemAddress= (TextView) findViewById(R.id.item_address_text_view);
-            textViewItemAddress.setText(address);
+            textViewItemAddress.setText("Address: "+address);
 
             String location = helper.getLocationById(id);
             textViewItemLocation = (TextView)findViewById(R.id.item_location_text_view);
-            textViewItemLocation.setText(location);
+            textViewItemLocation.setText("Neighborhood: " +location);
 
             String description = helper.getDescriptionById(id);
             textViewItemDescription = (TextView) findViewById(R.id.item_description_text_view);
-            textViewItemDescription.setText(description);
+            textViewItemDescription.setText("About: " + description);
+
+              itemIsClickedAsFavorite = helper.getFavoriteById(id);
+              if(itemIsClickedAsFavorite == 0 ) {
+                  fab.setImageResource(R.drawable.item_not_favorite);
+              } else {
+                  fab.setImageResource(R.drawable.item_favorite);
+              }
 
 
 
@@ -74,12 +83,18 @@ public class DetailActivity extends AppCompatActivity {
 
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if(itemIsClickedAsFavorite == 0) {
+                    itemIsClickedAsFavorite = 1;
+                    fab.setImageResource(R.drawable.item_favorite);
+                    Snackbar.make(view, "Added to Favorites", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                } else {
+                    itemIsClickedAsFavorite = 0;
+                    fab.setImageResource(R.drawable.item_not_favorite);
+                }
 
 
 

@@ -28,6 +28,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
     public static final String COL_ITEM_LOCATION = "LOCATION";
     public static final String COL_ITEM_DESCRIPTION = "DESCRIPTION";
     public static final String COL_ITEM_IMAGE = "IMAGE";
+    public static final String COL_ITEM_FAV = "FAVORITE";
 
 
 //declaring the one instance, the one object, of NeighborhoodSQLiteOpenHelper. This is the one thing that all other classes will access with getInstance
@@ -36,7 +37,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
 
 
     //Declaring (dgiving the array a name and  deciding  varaibles and)  an array of the Neighborhood column names.. It only  holds the column names
-    public static final String[] NEIGHBORHOOD_COLUMNS = {COL_ID, COL_ITEM_TYPE, COL_ITEM_NAME, COL_ITEM_ADDRESS, COL_ITEM_LOCATION, COL_ITEM_DESCRIPTION, COL_ITEM_IMAGE};
+    public static final String[] NEIGHBORHOOD_COLUMNS = {COL_ID, COL_ITEM_TYPE, COL_ITEM_NAME, COL_ITEM_ADDRESS, COL_ITEM_LOCATION, COL_ITEM_DESCRIPTION, COL_ITEM_IMAGE, COL_ITEM_FAV};
     // Declaring the string the holds the Sql call that will create our table
     private static final String CREATE_NEIGHBORHOOD_LIST_TABLE = "CREATE TABLE " + NEIGHBORHOOD_LIST_TABLE_NAME +
             "(" +
@@ -46,7 +47,8 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
             COL_ITEM_ADDRESS + " TEXT, " +
             COL_ITEM_LOCATION + " TEXT, " +
             COL_ITEM_DESCRIPTION + " TEXT, " +
-            COL_ITEM_IMAGE + " INTEGER)";
+            COL_ITEM_IMAGE + " INTEGER, " +
+            COL_ITEM_FAV + "BOOLEAN )";
 
     // this is our constructur for SQLiteOpenHelper
     public NeighborhoodSQLiteOpenHelper(Context context) {
@@ -81,6 +83,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
         values.put(COL_ITEM_LOCATION, location);
         values.put(COL_ITEM_DESCRIPTION, description);
         values.put(COL_ITEM_IMAGE, image);
+        values.put(COL_ITEM_FAV, false);
         SQLiteDatabase db = this.getWritableDatabase();
 
         //inserts a row , which hold the values of the different keys, stated above. Eaches key is a different column
@@ -255,6 +258,30 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
         } else {
             return 0;
         }
+    }
+    public int getFavoriteById(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME,
+                new String[]{COL_ITEM_FAV},
+                COL_ID+" = ?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null,
+                null);
+
+        if(cursor.moveToFirst()){
+            return cursor.getInt(cursor.getColumnIndex(COL_ITEM_FAV));
+        } else {
+            return 0;
+        }
+    }
+    public void setFavoriteById(int id, boolean isFavorite){
+        ContentValues values = new ContentValues();
+        values.put(COL_ITEM_FAV, isFavorite);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(NEIGHBORHOOD_LIST_TABLE_NAME, values, COL_ID+" = ?", new String[]{String.valueOf(id)});
     }
 
 
