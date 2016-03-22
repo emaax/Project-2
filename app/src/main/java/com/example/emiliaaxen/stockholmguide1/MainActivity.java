@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         helper.addItem("Mood", TYPE_SHOPPING,"Regeringsgatan 48, Stockholm", "Norrmalm/Vasastan", getString(R.string.mood),R.drawable.mood_gallerian);
         helper.addItem("Ahlens", TYPE_SHOPPING,"Klarabergsgatan 50, Stockholm","Norrmalm/Vasastan", getString(R.string.ahlens),R.drawable.ahlens);
-        helper.addItem("Old Town", TYPE_SHOPPING,"Hamngatan 18-20, Stockholm", "Norrmalm/Vasastan", getString(R.string.nk),R.drawable.nk);
+        helper.addItem("NK", TYPE_SHOPPING,"Hamngatan 18-20, Stockholm", "Norrmalm/Vasastan", getString(R.string.nk),R.drawable.nk);
 
 
         helper.addItem("Hotel Diplomat", TYPE_HOTELS,"Strandvagen 7C, Stockholm","Ostermalm", getString(R.string.diplomat),R.drawable.diplomat);

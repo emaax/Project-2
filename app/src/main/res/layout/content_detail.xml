@@ -43,23 +43,19 @@
             android:id="@+id/item_address_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-
-            />
+            android:layout_margin="@dimen/text_margin" />
 
         <TextView
             android:id="@+id/item_location_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-
-        />
+            android:layout_margin="@dimen/text_margin" />
 
         <TextView
             android:id="@+id/item_description_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin" />
+            android:layout_margin="@dimen/text_margin"/>
 
 
     </LinearLayout>

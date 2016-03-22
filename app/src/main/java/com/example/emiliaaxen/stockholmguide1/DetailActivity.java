@@ -45,7 +45,7 @@ public class DetailActivity extends AppCompatActivity {
               int image = helper.getImageById(id);
               imageViewItemImage =(ImageView) findViewById(R.id.item_image_view);
               imageViewItemImage.setBackgroundResource(image);
-              
+
             String type = helper.getTypeById(id);
             textViewItemType = (TextView)findViewById(R.id.item_type_text_view);
             textViewItemType.setText(type);

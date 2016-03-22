@@ -11,7 +11,9 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.emiliaaxen.stockholmguide1.MainActivity"
     tools:showIn="@layout/activity_main"
-    android:orientation="vertical">
+    android:orientation="vertical"
+
+   >
 
 
     <FrameLayout
@@ -33,7 +35,9 @@
             android:layout_gravity="left|bottom"
             android:textColor="@android:color/white"
             android:textStyle="bold"
-            android:layout_margin="12dp" />
+            android:layout_margin="12dp"
+
+            />
 
     </FrameLayout>
 
@@ -41,8 +45,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RESTURANTS"
+        android:text="RESTAURANTS"
         android:id="@+id/button_restaurants"
+
          />
 
     <Button
