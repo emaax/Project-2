@@ -86,7 +86,9 @@ public class ResultsActivity extends AppCompatActivity {
     private void handleIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            Cursor cursor = mHelper.searchNeighborhoodByType(query);
+            //create a new serach function
+             cursor = mHelper.searchingNeighborhoodByName(query);
+
             mCursorAdapter.changeCursor(cursor);
             mCursorAdapter.notifyDataSetChanged();
         }

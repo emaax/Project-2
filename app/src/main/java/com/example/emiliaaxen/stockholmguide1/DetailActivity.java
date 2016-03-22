@@ -28,6 +28,7 @@ public class DetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
+
         textViewItemType = (TextView)findViewById(R.id.item_type_text_view);
         textViewItemName = (TextView) findViewById(R.id.item_name_text_view);
         textViewItemAddress= (TextView) findViewById(R.id.item_address_text_view);

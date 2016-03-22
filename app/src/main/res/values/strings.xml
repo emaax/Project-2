@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Stockholm City Guide</string>
     <string name="action_settings">Settings</string>
-    <string name="search_hint">Search within the category</string>
-    <string name="title_activity_results">ResultsActivity</string>
-    <string name="title_activity_detail">DetailsActivity</string>
+    <string name="search_hint">Search by name</string>
+    <string name="title_activity_results">Category Results</string>
+    <string name="title_activity_detail">Details Activity</string>
     <string name="saturnus">"People go to Saturnus to drink large bowls of hot latte with the legendary cinnamon rolls – they are the biggest, and they’ve been described in the press as the best in town.
         A café and lunch spot with inspiration from France, where the decor has warm colors, a stone's throw from Stureplan and close to cultural attractions such as the Zita movie theater and the National Library of Sweden.</string>
     <string name="sallyochsystrar">"Calling themselves a food-spa, Voltaire serves modern vegetarian food complemented by fish and seafood. The restaurant is located in the Åhléns City department store and is a bright and relaxed oasis for busy shoppers. There is also a store selling everything from organic tea to soap and clever tools for the kitchen. "</string>
