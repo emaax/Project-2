@@ -30,17 +30,28 @@ public class FavoriteActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent favoriteToDetailIntent = new Intent(FavoriteActivity.this, DetailActivity.class);
-                favoriteCursor.moveToPosition(position);
-                favoriteToDetailIntent.putExtra(MainActivity.KEY_FAVORITES, favoriteCursor.getInt(favoriteCursor.getColumnIndex(NeighborhoodSQLiteOpenHelper.COL_ID)));
-                startActivity(favoriteToDetailIntent);
 
+                favoriteCursor.moveToPosition(position);
+                favoriteToDetailIntent.putExtra("id", favoriteCursor.getInt(favoriteCursor.getColumnIndex(NeighborhoodSQLiteOpenHelper.COL_ID)));
+                startActivity(favoriteToDetailIntent);
             }
         });
 
 
 
+                /*favoriteCursor.moveToPosition(position);
+                favoriteToDetailIntent.putExtra(MainActivity.KEY_FAVORITES, favoriteCursor.getInt(favoriteCursor.getColumnIndex(NeighborhoodSQLiteOpenHelper.COL_ID)));
+                startActivity(favoriteToDetailIntent);
+*/
+            }
+      //  });
 
-    }
+
+
+
+   
+
+
 
     @Override
     protected void onResume() {
