@@ -23,6 +23,6 @@
 
     <include layout="@layout/content_results" />
 
-   
+
 
 </android.support.design.widget.CoordinatorLayout>

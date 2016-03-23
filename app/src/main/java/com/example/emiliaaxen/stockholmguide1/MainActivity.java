@@ -93,8 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 setIntentMainToFavorite(KEY_FAVORITES);
                 //Intent mainToFavorite = new Intent(MainActivity.this, FavoriteActivity.class);
                 //startActivity(mainToFavorite);
-
-                Snackbar.make(view, "Go to favorites", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Go to favorites", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
             }
         });
