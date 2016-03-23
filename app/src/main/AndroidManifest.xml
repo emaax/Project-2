@@ -34,7 +34,8 @@
             android:name=".DetailActivity"
             android:label="@string/title_activity_detail"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".FavoriteActivity"></activity>
+        <activity android:name=".FavoriteActivity"
+            android:label="Favorites"></activity>
     </application>
 
 </manifest>

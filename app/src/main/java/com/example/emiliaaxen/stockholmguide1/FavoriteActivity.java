@@ -60,8 +60,8 @@ public class FavoriteActivity extends AppCompatActivity {
         favoriteCursor = NeighborhoodSQLiteOpenHelper.getInstance(FavoriteActivity.this).searchByFavorites();
         helper = NeighborhoodSQLiteOpenHelper.getInstance(FavoriteActivity.this);
        favoriteCursor.moveToFirst();
-        String dataTest = favoriteCursor.getString(favoriteCursor.getColumnIndex(NeighborhoodSQLiteOpenHelper.COL_ITEM_NAME));
-        Log.d("dataTest", dataTest);
+        //String dataTest = favoriteCursor.getString(favoriteCursor.getColumnIndex(NeighborhoodSQLiteOpenHelper.COL_ITEM_NAME));
+        //Log.d("dataTest", dataTest);
 
         favoriteCursorAdapter = new SimpleCursorAdapter(FavoriteActivity.this, android.R.layout.simple_list_item_activated_1, favoriteCursor, new String[]{NeighborhoodSQLiteOpenHelper.COL_ITEM_NAME}, new int[]{android.R.id.text1}, 0);
         favoriteList.setAdapter(favoriteCursorAdapter);
