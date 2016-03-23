@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -23,10 +24,10 @@ public class MainActivity extends AppCompatActivity {
     private static final String TYPE_HOTELS = "Hotels";
     public static final String KEY_FAVORITES = "Favorites";
     public static final String KEY_TYPE = "Type";
-    //private static final String KEY_SHARED = "Shared";
+    private static final String KEY_SHARED = "Shared";
 
 
-    //SharedPreferences sharedPref;
+    SharedPreferences sharedPref;
     Button restaurantsButton;
     Button attractionsButton;
     Button shoppingButton;
@@ -45,13 +46,13 @@ public class MainActivity extends AppCompatActivity {
 
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
-        // sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
 
 
-        // if shared pref does not exist, call initializeDB. Also update shared pref to exist now
-        //if (!sharedPref.getBoolean(KEY_SHARED, false)) {
+        //if shared pref does not exist, call initializeDB. Also update shared pref to exist now
+         if (!sharedPref.getBoolean(KEY_SHARED, false)) {
         initializeDB();
-        //}
+        }
 
         restaurantsButton = (Button) findViewById(R.id.button_restaurants);
         attractionsButton = (Button) findViewById(R.id.button_attractions);
@@ -128,10 +129,10 @@ public class MainActivity extends AppCompatActivity {
         helper.addItem("Berns", TYPE_HOTELS, "Nackstramsgatan 8, Stockholm", "Ostermalm", getString(R.string.berns), R.drawable.berns);
 
 
-        /*SharedPreferences.Editor editor = sharedPref.edit();
+        SharedPreferences.Editor editor = sharedPref.edit();
         editor.putBoolean(KEY_SHARED, true);
         editor.apply();
-        editor.notify();*/
+
 
     }
 
