@@ -144,6 +144,20 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor searchByFavorites() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME, // a. table
+                NEIGHBORHOOD_COLUMNS, // b. column names //from  what columns do we want answer
+                COL_ITEM_FAV + " = ?", // c. selections //
+                new String[]{1 + ""}, // d. selections args
+                null, // e. group by
+                null, // f. having
+                null, // g. order by
+                null); // h. limit
+
+        return cursor;
+    }
 
    public String getTypeById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -246,7 +260,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME,
                 new String[]{COL_ITEM_IMAGE},
-                COL_ID+" = ?",
+                COL_ID + " = ?",
                 new String[]{String.valueOf(id)},
                 null,
                 null,
@@ -259,12 +273,20 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
             return 0;
         }
     }
+
+    public void setFavoriteById(int id, boolean isFavorite){
+        ContentValues values = new ContentValues();
+        values.put(COL_ITEM_FAV, isFavorite);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(NEIGHBORHOOD_LIST_TABLE_NAME, values, COL_ID+" = ?", new String[]{String.valueOf(id)});
+    }
+
     public int getFavoriteById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME,
                 new String[]{COL_ITEM_FAV},
-                COL_ID+" = ?",
+                COL_ID + " = ?",
                 new String[]{String.valueOf(id)},
                 null,
                 null,
@@ -277,12 +299,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
             return 0;
         }
     }
-    public void setFavoriteById(int id, boolean isFavorite){
-        ContentValues values = new ContentValues();
-        values.put(COL_ITEM_FAV, isFavorite);
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.update(NEIGHBORHOOD_LIST_TABLE_NAME, values, COL_ID+" = ?", new String[]{String.valueOf(id)});
-    }
+
 
 
 

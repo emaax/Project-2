@@ -18,6 +18,7 @@ public class DetailActivity extends AppCompatActivity {
     TextView textViewItemDescription;
     ImageView imageViewItemImage;
     private int itemIsClickedAsFavorite = 0;
+    int id;
 
 
     @Override
@@ -30,74 +31,67 @@ public class DetailActivity extends AppCompatActivity {
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        textViewItemType = (TextView)findViewById(R.id.item_type_text_view);
+        textViewItemType = (TextView) findViewById(R.id.item_type_text_view);
         textViewItemName = (TextView) findViewById(R.id.item_name_text_view);
-        textViewItemAddress= (TextView) findViewById(R.id.item_address_text_view);
+        textViewItemAddress = (TextView) findViewById(R.id.item_address_text_view);
         textViewItemLocation = (TextView) findViewById(R.id.item_location_text_view);
         textViewItemDescription = (TextView) findViewById(R.id.item_description_text_view);
         imageViewItemImage = (ImageView) findViewById(R.id.item_image_view);
 
 
-        NeighborhoodSQLiteOpenHelper helper = NeighborhoodSQLiteOpenHelper.getInstance(DetailActivity.this);
+        final NeighborhoodSQLiteOpenHelper helper = NeighborhoodSQLiteOpenHelper.getInstance(DetailActivity.this);
 
-        int id = getIntent().getIntExtra("id", -1);
-
-
-          if(id >= 0){
-
-              int image = helper.getImageById(id);
-              imageViewItemImage =(ImageView) findViewById(R.id.item_image_view);
-              imageViewItemImage.setBackgroundResource(image);
-
+        id = getIntent().getIntExtra("id", -1);
+        if (id >= 0) {
+            //populate the type
             String type = helper.getTypeById(id);
-            textViewItemType = (TextView)findViewById(R.id.item_type_text_view);
+            textViewItemType = (TextView) findViewById(R.id.item_type_text_view);
             textViewItemType.setText(type);
-
+            //populate the item image
+            int image = helper.getImageById(id);
+            imageViewItemImage = (ImageView) findViewById(R.id.item_image_view);
+            imageViewItemImage.setBackgroundResource(image);
+            //Populate the item name
             String name = helper.getNameById(id);
             textViewItemName = (TextView) findViewById(R.id.item_name_text_view);
             textViewItemName.setText(name);
-
+            //Populate the item address
             String address = helper.getAddressById(id);
-            textViewItemAddress= (TextView) findViewById(R.id.item_address_text_view);
-            textViewItemAddress.setText("ADDRESS: "+address);
-
+            textViewItemAddress = (TextView) findViewById(R.id.item_address_text_view);
+            textViewItemAddress.setText("ADDRESS: " + address);
+            //Populate the item location
             String location = helper.getLocationById(id);
-            textViewItemLocation = (TextView)findViewById(R.id.item_location_text_view);
-            textViewItemLocation.setText("Neighborhood: " +location);
-
+            textViewItemLocation = (TextView) findViewById(R.id.item_location_text_view);
+            textViewItemLocation.setText("NEIGHBORHOOD: " + location);
+            //Populate the item description
             String description = helper.getDescriptionById(id);
             textViewItemDescription = (TextView) findViewById(R.id.item_description_text_view);
-            textViewItemDescription.setText("About: " + description);
-
-              itemIsClickedAsFavorite = helper.getFavoriteById(id);
-              if(itemIsClickedAsFavorite == 0 ) {
-                  fab.setImageResource(R.drawable.item_not_favorite);
-              } else {
-                  fab.setImageResource(R.drawable.item_favorite);
-              }
-
-
-
+            textViewItemDescription.setText("ABOUT: " + description);
+            //Populate the favorite "check button"
+            itemIsClickedAsFavorite = helper.getFavoriteById(id);
+            if (itemIsClickedAsFavorite == 0) {
+                fab.setImageResource(R.drawable.item_not_favorite);
+            } else {
+                fab.setImageResource(R.drawable.item_favorite);
+            }
         }
-
-
-
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(itemIsClickedAsFavorite == 0) {
+                if (itemIsClickedAsFavorite == 0) {
                     itemIsClickedAsFavorite = 1;
                     fab.setImageResource(R.drawable.item_favorite);
+                    helper.setFavoriteById(id,true);
                     Snackbar.make(view, "Added to Favorites", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
                     itemIsClickedAsFavorite = 0;
                     fab.setImageResource(R.drawable.item_not_favorite);
+                    helper.setFavoriteById(id, false);
                     Snackbar.make(view, "Removed from Favorites", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
-
 
 
             }

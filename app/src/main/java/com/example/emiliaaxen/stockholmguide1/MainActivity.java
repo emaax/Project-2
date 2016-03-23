@@ -5,17 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.SearchView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,16 +21,18 @@ public class MainActivity extends AppCompatActivity {
     private static final String TYPE_ATTRACTIONS = "Attractions";
     private static final String TYPE_SHOPPING = "Shopping";
     private static final String TYPE_HOTELS = "Hotels";
+    public static final String KEY_FAVORITES = "Favorites";
     public static final String KEY_TYPE = "Type";
-    private static final String KEY_SHARED = "Shared";
+    //private static final String KEY_SHARED = "Shared";
 
 
-    SharedPreferences sharedPref;
+    //SharedPreferences sharedPref;
     Button restaurantsButton;
     Button attractionsButton;
     Button shoppingButton;
     Button hotelsButton;
-    Intent intentMainToResultsActivity;
+    //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
 
     NeighborhoodSQLiteOpenHelper helper = NeighborhoodSQLiteOpenHelper.getInstance(MainActivity.this);
 
@@ -43,16 +42,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
-
-// if shared pref does not exist, call initializeDB. Also update shared pref to exist now
-        if (!sharedPref.getBoolean(KEY_SHARED, false)) {
-            initializeDB();
-        }
+        // sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
 
 
+        // if shared pref does not exist, call initializeDB. Also update shared pref to exist now
+        //if (!sharedPref.getBoolean(KEY_SHARED, false)) {
+        initializeDB();
+        //}
 
         restaurantsButton = (Button) findViewById(R.id.button_restaurants);
         attractionsButton = (Button) findViewById(R.id.button_attractions);
@@ -87,12 +86,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setIntentMainToFavorite(KEY_FAVORITES);
+                //Intent mainToFavorite = new Intent(MainActivity.this, FavoriteActivity.class);
+                //startActivity(mainToFavorite);
 
-                Snackbar.make(view, "Welcome to Stockholm", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Go to favorites", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -104,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         helper.addItem("Sally och Systrar", TYPE_RESTAURANTS, "Klarabergsgatan 50 Stockholm", "Norrmalm/Vasastan", getString(R.string.sallyochsystrar), R.drawable.sally);
         helper.addItem("Flying Elk", TYPE_RESTAURANTS, "Malartorget 15, Stockholm", "Sodermalm", getString(R.string.flyingelk), R.drawable.flying);
         helper.addItem("Snickarbacken", TYPE_RESTAURANTS, "Snickarbacken 7, Stockholm", "Ostermalm", getString(R.string.snickarbacken), R.drawable.snickarbacken);
-        helper.addItem("Urban Deli", TYPE_RESTAURANTS, "Nytorget 4 Stockholm", "Sodermalm", getString(R.string.urbandeli), R.drawable.urbandeli);
+        helper.addItem("Urban Deli", TYPE_RESTAURANTS, "Nytorget 4, Stockholm", "Sodermalm", getString(R.string.urbandeli), R.drawable.urbandeli);
         helper.addItem("Meatballs for the people", TYPE_RESTAURANTS, "Nytorgsgatan 30, Stockholm", "Sodermalm", getString(R.string.meatball), R.drawable.meatballs_for_the_people);
         helper.addItem("Sturehof", TYPE_RESTAURANTS, "Stureplan 2, Stockholm", "Ostermalm", getString(R.string.sturehof), R.drawable.sturehof);
         helper.addItem("Flipping Burger", TYPE_RESTAURANTS, "Observatoriegatan 8, Stockholm", "Norrmalm/Vasastan", getString(R.string.flippinburgers), R.drawable.flippinburgers);
@@ -125,20 +127,34 @@ public class MainActivity extends AppCompatActivity {
         helper.addItem("Hotel Diplomat", TYPE_HOTELS, "Strandvagen 7C, Stockholm", "Ostermalm", getString(R.string.diplomat), R.drawable.diplomat);
         helper.addItem("Grand Hôtel", TYPE_HOTELS, "Sodra Blasieholmshamnen 8, Stockholm", "Ostermalm", getString(R.string.grand), R.drawable.grandhotel);
         helper.addItem("Berns", TYPE_HOTELS, "Nackstramsgatan 8, Stockholm", "Ostermalm", getString(R.string.berns), R.drawable.berns);
-       sharedPref.edit().putBoolean(KEY_SHARED, true);
+
+
+        /*SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean(KEY_SHARED, true);
+        editor.apply();
+        editor.notify();*/
+
+    }
+
+
+
+   private void setIntentMainToFavorite(String favorite) {
+        Intent intentMainToFavorite = new Intent(MainActivity.this, FavoriteActivity.class);
+        intentMainToFavorite.putExtra(KEY_FAVORITES, favorite);
+        startActivity(intentMainToFavorite);
     }
 
     private void setIntents(String type) {
 
-        //pas
+
         Intent intentMainToResultsActivity = new Intent(MainActivity.this, ResultsActivity.class);
         intentMainToResultsActivity.putExtra(KEY_TYPE, type);
+
 
         startActivity(intentMainToResultsActivity);
     }
 
     /**
-     * 
      * @param menu
      * @return
      */

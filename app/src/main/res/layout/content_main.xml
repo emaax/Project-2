@@ -12,13 +12,14 @@
     tools:context="com.example.emiliaaxen.stockholmguide1.MainActivity"
     tools:showIn="@layout/activity_main"
     android:orientation="vertical"
-
+        android:background="@android:color/black"
    >
 
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="200dp"
+        android:background="@android:color/black">
 
         <ImageView
             android:layout_width="match_parent"
@@ -43,7 +44,7 @@
 
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="RESTAURANTS"
         android:id="@+id/button_restaurants"
@@ -51,7 +52,7 @@
          />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ATTRACTIONS"
         android:id="@+id/button_attractions"
@@ -59,14 +60,14 @@
          />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SHOPPING"
         android:id="@+id/button_shopping"
          />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="HOTELS"
         android:id="@+id/button_hotels"
