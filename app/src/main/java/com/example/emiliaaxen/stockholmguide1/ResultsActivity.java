@@ -24,6 +24,7 @@ public class ResultsActivity extends AppCompatActivity {
     private CursorAdapter mCursorAdapter;
     private NeighborhoodSQLiteOpenHelper mHelper;
     private Cursor cursor;
+    private String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class ResultsActivity extends AppCompatActivity {
         mHelper = NeighborhoodSQLiteOpenHelper.getInstance(ResultsActivity.this);
 
 
-        String type = getIntent().getStringExtra(MainActivity.KEY_TYPE);
+        type = getIntent().getStringExtra(MainActivity.KEY_TYPE);
 
         cursor = mHelper.searchNeighborhoodByType(type);
 
@@ -87,7 +88,7 @@ public class ResultsActivity extends AppCompatActivity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             //create a new serach function
-             cursor = mHelper.searchingNeighborhoodByName(query);
+             cursor = mHelper.searchingNeighborhoodByName(query, type);
 
             mCursorAdapter.changeCursor(cursor);
             mCursorAdapter.notifyDataSetChanged();

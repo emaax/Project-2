@@ -129,13 +129,13 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Cursor searchingNeighborhoodByName(String query) {
+    public Cursor searchingNeighborhoodByName(String query, String type) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME, // a. table
                 NEIGHBORHOOD_COLUMNS, // b. column names //from  what columns do we want answer
-                COL_ITEM_NAME + " LIKE  ?", // c. selections //
-                new String[]{"%" + query + "%"}, // d. selections args
+                COL_ITEM_NAME + " LIKE  ? AND " + COL_ITEM_TYPE + " = ? ", // c. selections //
+                new String[]{"%" + query + "%", type}, // d. selections args
                 null, // e. group by
                 null, // f. having
                 null, // g. order by

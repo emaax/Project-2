@@ -55,11 +55,11 @@ public class DetailActivity extends AppCompatActivity {
 
             String name = helper.getNameById(id);
             textViewItemName = (TextView) findViewById(R.id.item_name_text_view);
-            textViewItemName.setText("Name: "+name);
+            textViewItemName.setText(name);
 
             String address = helper.getAddressById(id);
             textViewItemAddress= (TextView) findViewById(R.id.item_address_text_view);
-            textViewItemAddress.setText("Address: "+address);
+            textViewItemAddress.setText("ADDRESS: "+address);
 
             String location = helper.getLocationById(id);
             textViewItemLocation = (TextView)findViewById(R.id.item_location_text_view);
