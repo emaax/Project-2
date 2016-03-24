@@ -27,10 +27,9 @@ public class StockholmItemsManager {
         ArrayList<StockholmItem> stockholmItems = new ArrayList<>();
         stockholmItems.addAll(getRestaurantItems(context));
         stockholmItems.addAll(getAttractionItems(context));
-        stockholmItems.addAll(getHotelItems(context));
         stockholmItems.addAll(getShoppingItems(context));
+        stockholmItems.addAll(getHotelItems(context));
 
-        // add the rest of the types such as attractions, etc.
 
         return stockholmItems;
     }
@@ -45,36 +44,88 @@ public class StockholmItemsManager {
         saturnus.setDescription(context.getString(R.string.saturnus));
         saturnus.setImageResourceId(R.drawable.saturnus);
 
-        // create the rest of the restaurant objects here
+        StockholmItem sally = new StockholmItem();
+        sally.setName(context.getString(R.string.sallyochsystrar_name));
+        sally.setType(TYPE_RESTAURANTS);
+        sally.setAddress("Klarabergsgatan 50, Stockholm");
+        sally.setNeighborhood(context.getString(R.string.neighborhood_norrmalmvasa));
+        sally.setDescription(context.getString(R.string.sallyochsystrar));
+        sally.setImageResourceId(R.drawable.sally);
+
+        StockholmItem flyingelk = new StockholmItem();
+        flyingelk.setName(context.getString(R.string.flyingelk_name));
+        flyingelk.setType(TYPE_RESTAURANTS);
+        flyingelk.setAddress("Malartorget 15, Stockholm");
+        flyingelk.setNeighborhood(context.getString(R.string.neighborhood_sodermalm));
+        flyingelk.setDescription(context.getString(R.string.flyingelk));
+        flyingelk.setImageResourceId(R.drawable.flying);
+
+        StockholmItem snickarbacken = new StockholmItem();
+        snickarbacken.setName(context.getString(R.string.snickarbacken_name));
+        snickarbacken.setType(TYPE_RESTAURANTS);
+        snickarbacken.setAddress("Snickarbacken 7, Stockholm");
+        snickarbacken.setNeighborhood(context.getString(R.string.neighborhood_ostermalm));
+        snickarbacken.setDescription(context.getString(R.string.snickarbacken));
+        snickarbacken.setImageResourceId(R.drawable.snickarbacken);
+
+        StockholmItem meatballs = new StockholmItem();
+        meatballs.setName(context.getString(R.string.meatball_name));
+        meatballs.setType(TYPE_RESTAURANTS);
+        meatballs.setAddress("Nytorgsgatan 30, Stockholm");
+        meatballs.setNeighborhood(context.getString(R.string.neighborhood_sodermalm));
+        meatballs.setDescription(context.getString(R.string.meatball));
+        meatballs.setImageResourceId(R.drawable.meatballs_for_the_people);
+
+        StockholmItem sturehof = new StockholmItem();
+        sturehof.setName(context.getString(R.string.sturehof_name));
+        sturehof.setType(TYPE_RESTAURANTS);
+        sturehof.setAddress("Stureplan 2, Stockholm");
+        sturehof.setNeighborhood(context.getString(R.string.neighborhood_ostermalm));
+        sturehof.setDescription(context.getString(R.string.sturehof));
+        sturehof.setImageResourceId(R.drawable.sturehof);
+
+        StockholmItem flippinburg = new StockholmItem();
+        flippinburg.setName(context.getString(R.string.flippinburgers_name));
+        flippinburg.setType(TYPE_RESTAURANTS);
+        flippinburg.setAddress("Observatoriegatan 8, Stockholm");
+        flippinburg.setNeighborhood(context.getString(R.string.neighborhood_norrmalmvasa));
+        flippinburg.setDescription(context.getString(R.string.flippinburgers));
+        flippinburg.setImageResourceId(R.drawable.flippinburgers);
+
+        StockholmItem blaporten = new StockholmItem();
+        blaporten.setName(context.getString(R.string.blaporten_name));
+        blaporten.setType(TYPE_RESTAURANTS);
+        blaporten.setAddress("Djurgardsvagen 64, Stockholm");
+        blaporten.setNeighborhood(context.getString(R.string.neighborhood_djurgarden));
+        blaporten.setDescription(context.getString(R.string.blaporten));
+        blaporten.setImageResourceId(R.drawable.bla_porten);
+
+        StockholmItem urbandeli = new StockholmItem();
+        urbandeli.setName(context.getString(R.string.urbandeli_name));
+        urbandeli.setType(TYPE_RESTAURANTS);
+        urbandeli.setAddress("Nytorget 4, Stockholm");
+        urbandeli.setNeighborhood(context.getString(R.string.neighborhood_sodermalm));
+        urbandeli.setDescription(context.getString(R.string.urbandeli));
+        urbandeli.setImageResourceId(R.drawable.urbandeli);
+
+
 
         ArrayList<StockholmItem> restaurants = new ArrayList<>();
+
         restaurants.add(saturnus);
-        // add the rest of the restaurant objects here
-
-
+        restaurants.add(sally);
+        restaurants.add(flyingelk);
+        restaurants.add(snickarbacken);
+        restaurants.add(meatballs);
+        restaurants.add(sturehof);
+        restaurants.add(flippinburg);
+        restaurants.add(blaporten);
+        restaurants.add(urbandeli);
 
         return restaurants;
     }
 
-    private static ArrayList<StockholmItem> getHotelItems(Context context){
-        StockholmItem diplomat = new StockholmItem();
-        diplomat.setName(context.getString(R.string.diplomat_name);
-        diplomat.setType(TYPE_HOTELS);
-        diplomat.setAddress("Strandvagen 7C, Stockholm");
-        diplomat.setNeighborhood(context.getString(R.string.neighborhood_djurgarden));
-        diplomat.setDescription(context.getString(R.string.diplomat));
-        diplomat.setImageResourceId(R.drawable.diplomat);
 
-        // create the rest of the hotels
-
-        ArrayList<StockholmItem> hotels = new ArrayList<>();
-
-        hotels.add(diplomat);
-
-        // add the rest of hotel items to the hotel item list
-
-        return hotels;
-    }
     private static ArrayList<StockholmItem> getAttractionItems(Context context){
 
         StockholmItem nordicmuseum = new StockholmItem();
@@ -125,7 +176,6 @@ public class StockholmItemsManager {
         attractions.add(sthlmConsert);
         attractions.add(rosendal);
 
-        // add the rest of hotel items to the hotel item list
 
         return attractions;
     }
@@ -164,31 +214,40 @@ public class StockholmItemsManager {
 
         return shopping;
     }
+
+    private static ArrayList<StockholmItem> getHotelItems(Context context){
+        StockholmItem diplomat = new StockholmItem();
+        diplomat.setName(context.getString(R.string.diplomat_name));
+        diplomat.setType(TYPE_HOTELS);
+        diplomat.setAddress("Strandvagen 7C, Stockholm");
+        diplomat.setNeighborhood(context.getString(R.string.neighborhood_djurgarden));
+        diplomat.setDescription(context.getString(R.string.diplomat));
+        diplomat.setImageResourceId(R.drawable.diplomat);
+
+        StockholmItem grand = new StockholmItem();
+        grand.setName(context.getString(R.string.grand_name));
+        grand.setType(TYPE_HOTELS);
+        grand.setAddress("Sodra Blasieholmshamnen 8, Stockholm");
+        grand.setNeighborhood(context.getString(R.string.neighborhood_djurgarden));
+        grand.setDescription(context.getString(R.string.grand));
+        grand.setImageResourceId(R.drawable.grandhotel);
+
+        StockholmItem berns = new StockholmItem();
+        berns.setName(context.getString(R.string.berns));
+        berns.setType(TYPE_HOTELS);
+        berns.setAddress("Nackstramsgatan 8, Stockholm");
+        berns.setNeighborhood(context.getString(R.string.neighborhood_djurgarden));
+        berns.setDescription(context.getString(R.string.berns));
+        berns.setImageResourceId(R.drawable.berns);
+
+
+        ArrayList<StockholmItem> hotels = new ArrayList<>();
+
+        hotels.add(diplomat);
+        hotels.add(grand);
+        hotels.add(berns);
+
+        return hotels;
+    }
 }
 
-/*
- helper.addItem("Saturnus", TYPE_RESTAURANTS, "Eriksbergsgatan 6, Stockholm", "Norrmalm/Vasastan", getString(R.string.saturnus), R.drawable.saturnus);
-        helper.addItem("Sally och Systrar", TYPE_RESTAURANTS, "Klarabergsgatan 50 Stockholm", "Norrmalm/Vasastan", getString(R.string.sallyochsystrar), R.drawable.sally);
-        helper.addItem("Flying Elk", TYPE_RESTAURANTS, "Malartorget 15, Stockholm", "Sodermalm", getString(R.string.flyingelk), R.drawable.flying);
-        helper.addItem("Snickarbacken", TYPE_RESTAURANTS, "Snickarbacken 7, Stockholm", "Ostermalm", getString(R.string.snickarbacken), R.drawable.snickarbacken);
-        helper.addItem("Urban Deli", TYPE_RESTAURANTS, "Nytorget 4, Stockholm", "Sodermalm", getString(R.string.urbandeli), R.drawable.urbandeli);
-        helper.addItem("Meatballs for the people", TYPE_RESTAURANTS, "Nytorgsgatan 30, Stockholm", "Sodermalm", getString(R.string.meatball), R.drawable.meatballs_for_the_people);
-        helper.addItem("Sturehof", TYPE_RESTAURANTS, "Stureplan 2, Stockholm", "Ostermalm", getString(R.string.sturehof), R.drawable.sturehof);
-        helper.addItem("Flipping Burger", TYPE_RESTAURANTS, "Observatoriegatan 8, Stockholm", "Norrmalm/Vasastan", getString(R.string.flippinburgers), R.drawable.flippinburgers);
-        helper.addItem("Bla Porten", TYPE_RESTAURANTS, "Djurgardsvagen 64, Stockholm", "Djurgarden", getString(R.string.blaporten), R.drawable.bla_porten);
-
-        helper.addItem("Nordic Museum", TYPE_ATTRACTIONS, "Djurgardsvagen 6-16, Stockholm", "Djurgarden", getString(R.string.nordic_museum), R.drawable.nordiskamuseumet);
-        helper.addItem("Old Town", TYPE_ATTRACTIONS, "Old Town", "Old Town", getString(R.string.old_town), R.drawable.old_town);
-        helper.addItem("Rosendal Palace ", TYPE_ATTRACTIONS, "Rosendalsvagen 38, Stockholm", "Djurgarden", getString(R.string.rosendal), R.drawable.rosendal);
-        helper.addItem("Djurgarden", TYPE_ATTRACTIONS, "Djurgarden, Stockholm", "Djurgarden", getString(R.string.djurgarden), R.drawable.djurgarden);
-        helper.addItem("Stockholm Consert Hall", TYPE_ATTRACTIONS, "Hotorget, Stockholm", "Hamngatan 18-20, Stockholm", getString(R.string.sthlm_concet_hall), R.drawable.sthlm_concert_hall);
-
-        helper.addItem("Mood", TYPE_SHOPPING, "Regeringsgatan 48, Stockholm", "Norrmalm/Vasastan", getString(R.string.mood), R.drawable.mood_gallerian);
-        helper.addItem("Ahlens", TYPE_SHOPPING, "Klarabergsgatan 50, Stockholm", "Norrmalm/Vasastan", getString(R.string.ahlens), R.drawable.ahlens);
-        helper.addItem("NK", TYPE_SHOPPING, "Hamngatan 18-20, Stockholm", "Norrmalm/Vasastan", getString(R.string.nk), R.drawable.nk);
-
-        helper.addItem("Hotel Diplomat", TYPE_HOTELS, "Strandvagen 7C, Stockholm", "Ostermalm", getString(R.string.diplomat), R.drawable.diplomat);
-        helper.addItem("Grand Hôtel", TYPE_HOTELS, "Sodra Blasieholmshamnen 8, Stockholm", "Ostermalm", getString(R.string.grand), R.drawable.grandhotel);
-        helper.addItem("Berns", TYPE_HOTELS, "Nackstramsgatan 8, Stockholm", "Ostermalm", getString(R.string.berns), R.drawable.berns);
-
-*/

@@ -15,15 +15,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.example.emiliaaxen.stockholmguide1.model.StockholmItem;
 import com.example.emiliaaxen.stockholmguide1.model.StockholmItemsManager;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     //region private Variables
-    private static final String TYPE_RESTAURANTS = "Restaurants";
-    private static final String TYPE_ATTRACTIONS = "Attractions";
-    private static final String TYPE_SHOPPING = "Shopping";
-    private static final String TYPE_HOTELS = "Hotels";
+
     private static final String PREF_KEY_FIRST_APP_RUN = "prefKeyFirstAppRun";
 
     private SharedPreferences sharedPref;
@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
             editor.putBoolean(PREF_KEY_FIRST_APP_RUN, false);
             editor.apply();
 
-
             initializeDB();
         }
 
@@ -58,60 +57,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_results, menu);
 
         // Associates the  searchable configuration with the SearchView
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        android.support.v7.widget.SearchView searchView =
-                (android.support.v7.widget.SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         return true;
     }
 
     private void initializeDB() {
-        helper.addItem("Saturnus", TYPE_RESTAURANTS, "Eriksbergsgatan 6, Stockholm", "Norrmalm/Vasastan", getString(R.string.saturnus), R.drawable.saturnus);
-        helper.addItem("Sally och Systrar", TYPE_RESTAURANTS, "Klarabergsgatan 50 Stockholm", "Norrmalm/Vasastan", getString(R.string.sallyochsystrar), R.drawable.sally);
-        helper.addItem("Flying Elk", TYPE_RESTAURANTS, "Malartorget 15, Stockholm", "Sodermalm", getString(R.string.flyingelk), R.drawable.flying);
-        helper.addItem("Snickarbacken", TYPE_RESTAURANTS, "Snickarbacken 7, Stockholm", "Ostermalm", getString(R.string.snickarbacken), R.drawable.snickarbacken);
-        helper.addItem("Urban Deli", TYPE_RESTAURANTS, "Nytorget 4, Stockholm", "Sodermalm", getString(R.string.urbandeli), R.drawable.urbandeli);
-        helper.addItem("Meatballs for the people", TYPE_RESTAURANTS, "Nytorgsgatan 30, Stockholm", "Sodermalm", getString(R.string.meatball), R.drawable.meatballs_for_the_people);
-        helper.addItem("Sturehof", TYPE_RESTAURANTS, "Stureplan 2, Stockholm", "Ostermalm", getString(R.string.sturehof), R.drawable.sturehof);
-        helper.addItem("Flipping Burger", TYPE_RESTAURANTS, "Observatoriegatan 8, Stockholm", "Norrmalm/Vasastan", getString(R.string.flippinburgers), R.drawable.flippinburgers);
-        helper.addItem("Bla Porten", TYPE_RESTAURANTS, "Djurgardsvagen 64, Stockholm", "Djurgarden", getString(R.string.blaporten), R.drawable.bla_porten);
+        ArrayList<StockholmItem> stockholmItems = StockholmItemsManager.getStockholmItems(this);
 
-        helper.addItem("Nordic Museum", TYPE_ATTRACTIONS, "Djurgardsvagen 6-16, Stockholm", "Djurgarden", getString(R.string.nordic_museum), R.drawable.nordiskamuseumet);
-        helper.addItem("Old Town", TYPE_ATTRACTIONS, "Old Town", "Old Town", getString(R.string.old_town), R.drawable.old_town);
-        helper.addItem("Rosendal Palace ", TYPE_ATTRACTIONS, "Rosendalsvagen 38, Stockholm", "Djurgarden", getString(R.string.rosendal), R.drawable.rosendal);
-        helper.addItem("Djurgarden", TYPE_ATTRACTIONS, "Djurgarden, Stockholm", "Djurgarden", getString(R.string.djurgarden), R.drawable.djurgarden);
-        helper.addItem("Stockholm Consert Hall", TYPE_ATTRACTIONS, "Hotorget, Stockholm", "Hamngatan 18-20, Stockholm", getString(R.string.sthlm_concet_hall), R.drawable.sthlm_concert_hall);
+        for (StockholmItem item : stockholmItems) {
+            helper.addItem(item.getName(), item.getType(), item.getAddress(), item.getNeighborhood(), item.getDescription(), item.getImageResourceId());
 
-        helper.addItem("Mood", TYPE_SHOPPING, "Regeringsgatan 48, Stockholm", "Norrmalm/Vasastan", getString(R.string.mood), R.drawable.mood_gallerian);
-        helper.addItem("Ahlens", TYPE_SHOPPING, "Klarabergsgatan 50, Stockholm", "Norrmalm/Vasastan", getString(R.string.ahlens), R.drawable.ahlens);
-        helper.addItem("NK", TYPE_SHOPPING, "Hamngatan 18-20, Stockholm", "Norrmalm/Vasastan", getString(R.string.nk), R.drawable.nk);
-
-        helper.addItem("Hotel Diplomat", TYPE_HOTELS, "Strandvagen 7C, Stockholm", "Ostermalm", getString(R.string.diplomat), R.drawable.diplomat);
-        helper.addItem("Grand Hôtel", TYPE_HOTELS, "Sodra Blasieholmshamnen 8, Stockholm", "Ostermalm", getString(R.string.grand), R.drawable.grandhotel);
-        helper.addItem("Berns", TYPE_HOTELS, "Nackstramsgatan 8, Stockholm", "Ostermalm", getString(R.string.berns), R.drawable.berns);
-
+        }
     }
 
-   /* private Intent getIntentForType(String key, String value, Class classToLaunch) {
-        Intent intentMainToResultsActivity = new Intent(MainActivity.this, classToLaunch);
-        intentMainToResultsActivity.putExtra(key, value);
 
-        return intentMainToResultsActivity;
-    }
-
-    private void setIntentMainToFavorite(String favorite) {
-        Intent intentMainToFavorite = new Intent(MainActivity.this, FavoriteActivity.class);
-        intentMainToFavorite.putExtra(KEY_FAVORITES, favorite);
-        startActivity(intentMainToFavorite);
-    }
-*/
     private Intent getIntentForType(String key, String value, Class classToLaunch) {
 
         Intent intentMainToResultsActivity = new Intent(MainActivity.this, classToLaunch);
@@ -120,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         return intentMainToResultsActivity;
     }
 
-    private void initializeViews(){
+    private void initializeViews() {
         restaurantsButton = (Button) findViewById(R.id.button_restaurants);
         attractionsButton = (Button) findViewById(R.id.button_attractions);
         shoppingButton = (Button) findViewById(R.id.button_shopping);
@@ -129,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void initializeClickListeners(){
+    private void initializeClickListeners() {
         setButtonClickListener(restaurantsButton, StockholmItemsManager.TYPE_RESTAURANTS);
         setButtonClickListener(attractionsButton, StockholmItemsManager.TYPE_ATTRACTIONS);
         setButtonClickListener(shoppingButton, StockholmItemsManager.TYPE_SHOPPING);
@@ -139,28 +106,29 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setButtonClickListener(Button button, final String type){
+    private void setButtonClickListener(Button button, final String type) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             Intent intent = getIntentForType(KEY_TYPE, type, ResultsActivity.class);
-              startActivity(intent);
+                Intent intent = getIntentForType(KEY_TYPE, type, ResultsActivity.class);
+                startActivity(intent);
             }
         });
     }
-private void setFabClickListener(){
 
-    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-    fab.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Snackbar.make(view, "Go to favorites", Snackbar.LENGTH_SHORT)
-                    .setAction("Action", null).show();
-      Intent intent = getIntentForType(KEY_FAVORITES, KEY_FAVORITES, FavoriteActivity.class);
-            startActivity(intent);
-        }
-    });
-}
+    private void setFabClickListener() {
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Go to favorites", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
+                Intent intent = getIntentForType(KEY_FAVORITES, KEY_FAVORITES, FavoriteActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
 
     @Override
@@ -176,7 +144,8 @@ private void setFabClickListener(){
         return false;
         //return super.onOptionsItemSelected(item);
     }
-    private boolean checkIfFirstTimeRunningApp(){
+
+    private boolean checkIfFirstTimeRunningApp() {
         boolean isFirstRun = sharedPref.getBoolean(PREF_KEY_FIRST_APP_RUN, true);
         return isFirstRun;
     }

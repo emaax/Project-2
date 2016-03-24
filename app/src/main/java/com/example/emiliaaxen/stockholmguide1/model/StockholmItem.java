@@ -8,7 +8,6 @@ public class StockholmItem {
     private String name;
     private String type;
     private String address;
-    private String location;
     private String description;
     private String neighborhood;
     private int imageResourceId;
@@ -35,13 +34,6 @@ public class StockholmItem {
         this.address = address;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
 
     public String getDescription() {
         return description;

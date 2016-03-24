@@ -25,7 +25,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
     public static final String COL_ITEM_TYPE = "TYPE";
     public static final String COL_ITEM_NAME = "ITEM_NAME";
     public static final String COL_ITEM_ADDRESS = "ADDRESS";
-    public static final String COL_ITEM_LOCATION = "LOCATION";
+    public static final String COL_ITEM_NEIGHBORHOOD = "LOCATION";
     public static final String COL_ITEM_DESCRIPTION = "DESCRIPTION";
     public static final String COL_ITEM_IMAGE = "IMAGE";
     public static final String COL_ITEM_FAV = "FAVORITE";
@@ -37,7 +37,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
 
 
     //Declaring (dgiving the array a name and  deciding  varaibles and)  an array of the Neighborhood column names.. It only  holds the column names
-    public static final String[] NEIGHBORHOOD_COLUMNS = {COL_ID, COL_ITEM_TYPE, COL_ITEM_NAME, COL_ITEM_ADDRESS, COL_ITEM_LOCATION, COL_ITEM_DESCRIPTION, COL_ITEM_IMAGE, COL_ITEM_FAV};
+    public static final String[] NEIGHBORHOOD_COLUMNS = {COL_ID, COL_ITEM_TYPE, COL_ITEM_NAME, COL_ITEM_ADDRESS, COL_ITEM_NEIGHBORHOOD, COL_ITEM_DESCRIPTION, COL_ITEM_IMAGE, COL_ITEM_FAV};
     // Declaring the string the holds the Sql call that will create our table
     private static final String CREATE_NEIGHBORHOOD_LIST_TABLE = "CREATE TABLE " + NEIGHBORHOOD_LIST_TABLE_NAME +
             "(" +
@@ -45,7 +45,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
             COL_ITEM_TYPE + " TEXT, " +
             COL_ITEM_NAME + " TEXT, " +
             COL_ITEM_ADDRESS + " TEXT, " +
-            COL_ITEM_LOCATION + " TEXT, " +
+            COL_ITEM_NEIGHBORHOOD + " TEXT, " +
             COL_ITEM_DESCRIPTION + " TEXT, " +
             COL_ITEM_IMAGE + " INTEGER, " +
             COL_ITEM_FAV + " BOOLEAN )";
@@ -68,7 +68,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
     //Add new itinerary list
-    public long addItem(String name, String type, String address, String location, String description, int image) {
+    public long addItem(String name, String type, String address, String neighborhood, String description, int image) {
 
         // Our table has five columns,COL_ITEM_NAME, COL_ITEM_TYPE, ... these are all Keys for the values map. We will give the the arguments as values, in other words
         // We're taking the argument "name", and giving it the value name.. and putting it in the key called key col_item_name,
@@ -79,8 +79,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
         values.put(COL_ITEM_TYPE, type);
         values.put(COL_ITEM_NAME, name);
         values.put(COL_ITEM_ADDRESS, address);
-        values.put(COL_ITEM_LOCATION, location);
-        values.put(COL_ITEM_LOCATION, location);
+        values.put(COL_ITEM_NEIGHBORHOOD, neighborhood);
         values.put(COL_ITEM_DESCRIPTION, description);
         values.put(COL_ITEM_IMAGE, image);
         values.put(COL_ITEM_FAV, false);
@@ -222,7 +221,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME,
-                new String[]{COL_ITEM_LOCATION},
+                new String[]{COL_ITEM_NEIGHBORHOOD},
                 COL_ID + " = ?",
                 new String[]{String.valueOf(id)},
                 null,
@@ -231,7 +230,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
                 null);
 
         if (cursor.moveToFirst()) {
-            return cursor.getString(cursor.getColumnIndex(COL_ITEM_LOCATION));
+            return cursor.getString(cursor.getColumnIndex(COL_ITEM_NEIGHBORHOOD));
         } else {
             return "No Location Found"; // or "No Description Found";
         }
