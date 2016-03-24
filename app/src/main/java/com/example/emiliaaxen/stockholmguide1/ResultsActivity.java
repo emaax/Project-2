@@ -37,7 +37,6 @@ public class ResultsActivity extends AppCompatActivity {
         mNeighborhoodListView = (ListView) findViewById(R.id.neighborhood_list_view);
         mHelper = NeighborhoodSQLiteOpenHelper.getInstance(ResultsActivity.this);
 
-
         type = getIntent().getStringExtra(MainActivity.KEY_TYPE);
 
         if (type.equals(MainActivity.KEY_FAVORITES)) {
@@ -45,7 +44,6 @@ public class ResultsActivity extends AppCompatActivity {
         } else {
             cursor = mHelper.searchNeighborhoodByType(type);
         }
-
         //Create a cursor
         cursor = mHelper.searchNeighborhoodByType(type);
         // Gets the query from the database helper called getNeighborhoodList, which is a cursor of all of the data                         SHOULD IT BE NAME
@@ -64,7 +62,7 @@ public class ResultsActivity extends AppCompatActivity {
             }
         });
 
-        handleIntent(getIntent());
+       // handleIntent(getIntent());
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -94,14 +92,6 @@ public class ResultsActivity extends AppCompatActivity {
             mCursorAdapter.notifyDataSetChanged();
         }
 
-       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
     }
 
 }

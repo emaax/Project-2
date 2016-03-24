@@ -23,7 +23,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     //region private Variables
-
     private static final String PREF_KEY_FIRST_APP_RUN = "prefKeyFirstAppRun";
 
     private SharedPreferences sharedPref;
@@ -33,9 +32,12 @@ public class MainActivity extends AppCompatActivity {
     private Button hotelsButton;
 
     private NeighborhoodSQLiteOpenHelper helper;
+    //endregion private Variables
 
+    //region Public Variables
     public static final String KEY_FAVORITES = "Favorites";
     public static final String KEY_TYPE = "Type";
+    //endregion Public Variables
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +79,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    /**Returns an intent with the value set as an extra. The intent will launch the class being passed
+     * in
+     *
+     * @param key
+     * @param value String value for the key
+     * @param classToLaunch The activity that will launch
+     * @return Intent to launch the activity with the extra value
+     */
     private Intent getIntentForType(String key, String value, Class classToLaunch) {
 
         Intent intentMainToResultsActivity = new Intent(MainActivity.this, classToLaunch);
@@ -86,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
         return intentMainToResultsActivity;
     }
 
+    /**
+     * This method will initialize all the views which are used by this activity
+     */
     private void initializeViews() {
         restaurantsButton = (Button) findViewById(R.id.button_restaurants);
         attractionsButton = (Button) findViewById(R.id.button_attractions);
@@ -95,16 +107,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This method initializes the clickListeners for all views in the activity
+     */
     private void initializeClickListeners() {
         setButtonClickListener(restaurantsButton, StockholmItemsManager.TYPE_RESTAURANTS);
         setButtonClickListener(attractionsButton, StockholmItemsManager.TYPE_ATTRACTIONS);
         setButtonClickListener(shoppingButton, StockholmItemsManager.TYPE_SHOPPING);
         setButtonClickListener(hotelsButton, StockholmItemsManager.TYPE_HOTELS);
         setFabClickListener();
-
-
     }
 
+    /**
+     * Buttonfor the KEY_TYPES; i.e for the type
+     *
+     * @param button Buttons
+     * @param type String,
+     */
     private void setButtonClickListener(Button button, final String type) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
