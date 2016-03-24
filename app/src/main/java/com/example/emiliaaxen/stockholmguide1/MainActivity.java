@@ -15,75 +15,48 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.example.emiliaaxen.stockholmguide1.model.StockholmItemsManager;
+
 public class MainActivity extends AppCompatActivity {
 
+    //region private Variables
     private static final String TYPE_RESTAURANTS = "Restaurants";
     private static final String TYPE_ATTRACTIONS = "Attractions";
     private static final String TYPE_SHOPPING = "Shopping";
     private static final String TYPE_HOTELS = "Hotels";
+    private static final String PREF_KEY_FIRST_APP_RUN = "prefKeyFirstAppRun";
+
+    private SharedPreferences sharedPref;
+    private Button restaurantsButton;
+    private Button attractionsButton;
+    private Button shoppingButton;
+    private Button hotelsButton;
+
+    private NeighborhoodSQLiteOpenHelper helper;
+
     public static final String KEY_FAVORITES = "Favorites";
     public static final String KEY_TYPE = "Type";
-    private static final String KEY_SHARED = "Shared";
-
-    SharedPreferences sharedPref;
-    Button restaurantsButton;
-    Button attractionsButton;
-    Button shoppingButton;
-    Button hotelsButton;
-    //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-    NeighborhoodSQLiteOpenHelper helper = NeighborhoodSQLiteOpenHelper.getInstance(MainActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+
+        helper = NeighborhoodSQLiteOpenHelper.getInstance(MainActivity.this);
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
-        if (!sharedPref.getBoolean(KEY_SHARED, false)) {
+        if (checkIfFirstTimeRunningApp()) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putBoolean(PREF_KEY_FIRST_APP_RUN, false);
+            editor.apply();
+
+
             initializeDB();
         }
-        restaurantsButton = (Button) findViewById(R.id.button_restaurants);
-        attractionsButton = (Button) findViewById(R.id.button_attractions);
-        shoppingButton = (Button) findViewById(R.id.button_shopping);
-        hotelsButton = (Button) findViewById(R.id.button_hotels);
 
-        restaurantsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setIntents(TYPE_RESTAURANTS);
-            }
-        });
-        attractionsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setIntents(TYPE_ATTRACTIONS);
-            }
-        });
-        shoppingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setIntents(TYPE_SHOPPING);
-            }
-        });
-        hotelsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setIntents(TYPE_HOTELS);
-            }
-        });
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setIntentMainToFavorite(KEY_FAVORITES);
-                //Intent mainToFavorite = new Intent(MainActivity.this, FavoriteActivity.class);
-                //startActivity(mainToFavorite);
-                Snackbar.make(view, "Go to favorites", Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null).show();
-            }
-        });
+        initializeViews();
+        initializeClickListeners();
     }
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -124,9 +97,13 @@ public class MainActivity extends AppCompatActivity {
         helper.addItem("Grand Hôtel", TYPE_HOTELS, "Sodra Blasieholmshamnen 8, Stockholm", "Ostermalm", getString(R.string.grand), R.drawable.grandhotel);
         helper.addItem("Berns", TYPE_HOTELS, "Nackstramsgatan 8, Stockholm", "Ostermalm", getString(R.string.berns), R.drawable.berns);
 
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean(KEY_SHARED, true);
-        editor.apply();
+    }
+
+   /* private Intent getIntentForType(String key, String value, Class classToLaunch) {
+        Intent intentMainToResultsActivity = new Intent(MainActivity.this, classToLaunch);
+        intentMainToResultsActivity.putExtra(key, value);
+
+        return intentMainToResultsActivity;
     }
 
     private void setIntentMainToFavorite(String favorite) {
@@ -134,13 +111,57 @@ public class MainActivity extends AppCompatActivity {
         intentMainToFavorite.putExtra(KEY_FAVORITES, favorite);
         startActivity(intentMainToFavorite);
     }
+*/
+    private Intent getIntentForType(String key, String value, Class classToLaunch) {
 
-    private void setIntents(String type) {
+        Intent intentMainToResultsActivity = new Intent(MainActivity.this, classToLaunch);
+        intentMainToResultsActivity.putExtra(key, value);
 
-        Intent intentMainToResultsActivity = new Intent(MainActivity.this, ResultsActivity.class);
-        intentMainToResultsActivity.putExtra(KEY_TYPE, type);
-        startActivity(intentMainToResultsActivity);
+        return intentMainToResultsActivity;
     }
+
+    private void initializeViews(){
+        restaurantsButton = (Button) findViewById(R.id.button_restaurants);
+        attractionsButton = (Button) findViewById(R.id.button_attractions);
+        shoppingButton = (Button) findViewById(R.id.button_shopping);
+        hotelsButton = (Button) findViewById(R.id.button_hotels);
+
+
+    }
+
+    private void initializeClickListeners(){
+        setButtonClickListener(restaurantsButton, StockholmItemsManager.TYPE_RESTAURANTS);
+        setButtonClickListener(attractionsButton, StockholmItemsManager.TYPE_ATTRACTIONS);
+        setButtonClickListener(shoppingButton, StockholmItemsManager.TYPE_SHOPPING);
+        setButtonClickListener(hotelsButton, StockholmItemsManager.TYPE_HOTELS);
+        setFabClickListener();
+
+
+    }
+
+    private void setButtonClickListener(Button button, final String type){
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             Intent intent = getIntentForType(KEY_TYPE, type, ResultsActivity.class);
+              startActivity(intent);
+            }
+        });
+    }
+private void setFabClickListener(){
+
+    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+    fab.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Snackbar.make(view, "Go to favorites", Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null).show();
+      Intent intent = getIntentForType(KEY_FAVORITES, KEY_FAVORITES, FavoriteActivity.class);
+            startActivity(intent);
+        }
+    });
+}
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -155,5 +176,8 @@ public class MainActivity extends AppCompatActivity {
         return false;
         //return super.onOptionsItemSelected(item);
     }
-
+    private boolean checkIfFirstTimeRunningApp(){
+        boolean isFirstRun = sharedPref.getBoolean(PREF_KEY_FIRST_APP_RUN, true);
+        return isFirstRun;
+    }
 }

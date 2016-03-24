@@ -50,4 +50,33 @@
         The Old Town and Royal Palace are just over a quarter mile away, and Nybroplan Tram Stop is a 2-minute walk away. The knowledgeable staff is always willing to give local tips. Sightseeing boats and archipelago tours depart from the nearby harbor."</string>
     <string name="search_title">search_title</string>
     <string name="favorites">favorites</string>
+
+    <string name="nordic_museum_name">"Nordic Museum"</string>
+    <string name="djurgarden_name">"Djurgarden"</string>
+    <string name="rosendal_name"> "Rosendal"</string>
+    <string name="sthlm_concet_hall_name">"Stockholm Concert Hall"</string>
+    <string name="old_town_name">"Old Town"</string>
+
+    <string name="sallyochsystrar_name">"Sally och Systrar"</string>
+    <string name="flyingelk_name">"Stockholm Concert Hall"</string>
+    <string name="snickarbacken_name">"Snickarbacken"</string>
+    <string name="urbandeli_name">"Urban Deli"</string>
+    <string name="blaporten_name">"Bla Porten"</string>
+    <string name="meatball_name">"Meatballs for the people"</string>
+    <string name="flippinburgers_name">"Flipping Burger"</string>
+    <string name="sturehof_name">"Sturehof"</string>
+    <string name="saturnus_name">"Saturnus"</string>
+
+    <string name="mood_name">"Mood"</string>
+    <string name="ahlens_name">"Ahlens"</string>
+    <string name="nk_name">"Nordiska Kompaniet"</string>
+
+    <string name="grand_name">"Grand Hôtel"</string>
+    <string name="diplomat_name">"Hotel Diplomat"</string>
+    <string name="berns_name">"Berns"</string>
+    
+    <string name="neighborhood_norrmalmvasa">"Norrmalm/Vasastan"</string>
+    <string name="neighborhood_ostermalm">"Ostermalm"</string>
+    <string name="neighborhood_sodermalm">"Sodermalm"</string>
+    <string name="neighborhood_djurgarden">"Djurgarden"</string>
 </resources>
