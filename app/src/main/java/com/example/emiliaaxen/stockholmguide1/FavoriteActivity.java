@@ -13,7 +13,6 @@ import android.widget.SimpleCursorAdapter;
 
 public class FavoriteActivity extends AppCompatActivity {
 
-
     Cursor favoriteCursor;
     CursorAdapter favoriteCursorAdapter;
     ListView favoriteList;
@@ -37,29 +36,19 @@ public class FavoriteActivity extends AppCompatActivity {
             }
         });
 
-
-
                 /*favoriteCursor.moveToPosition(position);
                 favoriteToDetailIntent.putExtra(MainActivity.KEY_FAVORITES, favoriteCursor.getInt(favoriteCursor.getColumnIndex(NeighborhoodSQLiteOpenHelper.COL_ID)));
                 startActivity(favoriteToDetailIntent);
 */
-            }
-      //  });
-
-
-
-
-
-
-
+    }
+    //  });
 
     @Override
     protected void onResume() {
 
-
         favoriteCursor = NeighborhoodSQLiteOpenHelper.getInstance(FavoriteActivity.this).searchByFavorites();
         helper = NeighborhoodSQLiteOpenHelper.getInstance(FavoriteActivity.this);
-       favoriteCursor.moveToFirst();
+        favoriteCursor.moveToFirst();
         //String dataTest = favoriteCursor.getString(favoriteCursor.getColumnIndex(NeighborhoodSQLiteOpenHelper.COL_ITEM_NAME));
         //Log.d("dataTest", dataTest);
 

@@ -20,16 +20,14 @@ public class DetailActivity extends AppCompatActivity {
     private int itemIsClickedAsFavorite = 0;
     int id;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final NeighborhoodSQLiteOpenHelper helper = NeighborhoodSQLiteOpenHelper.getInstance(DetailActivity.this);
 
         textViewItemType = (TextView) findViewById(R.id.item_type_text_view);
         textViewItemName = (TextView) findViewById(R.id.item_name_text_view);
@@ -37,9 +35,6 @@ public class DetailActivity extends AppCompatActivity {
         textViewItemLocation = (TextView) findViewById(R.id.item_location_text_view);
         textViewItemDescription = (TextView) findViewById(R.id.item_description_text_view);
         imageViewItemImage = (ImageView) findViewById(R.id.item_image_view);
-
-
-        final NeighborhoodSQLiteOpenHelper helper = NeighborhoodSQLiteOpenHelper.getInstance(DetailActivity.this);
 
         id = getIntent().getIntExtra("id", -1);
         if (id >= 0) {
@@ -75,14 +70,13 @@ public class DetailActivity extends AppCompatActivity {
                 fab.setImageResource(R.drawable.item_favorite);
             }
         }
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (itemIsClickedAsFavorite == 0) {
                     itemIsClickedAsFavorite = 1;
                     fab.setImageResource(R.drawable.item_favorite);
-                    helper.setFavoriteById(id,true);
+                    helper.setFavoriteById(id, true);
                     Snackbar.make(view, "Added to Favorites", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
@@ -92,8 +86,6 @@ public class DetailActivity extends AppCompatActivity {
                     Snackbar.make(view, "Removed from Favorites", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
-
-
             }
         });
     }

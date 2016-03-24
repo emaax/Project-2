@@ -15,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
-
 public class MainActivity extends AppCompatActivity {
 
     private static final String TYPE_RESTAURANTS = "Restaurants";
@@ -26,34 +25,24 @@ public class MainActivity extends AppCompatActivity {
     public static final String KEY_TYPE = "Type";
     private static final String KEY_SHARED = "Shared";
 
-
     SharedPreferences sharedPref;
     Button restaurantsButton;
     Button attractionsButton;
     Button shoppingButton;
     Button hotelsButton;
     //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
-
     NeighborhoodSQLiteOpenHelper helper = NeighborhoodSQLiteOpenHelper.getInstance(MainActivity.this);
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
-
-
-        //if shared pref does not exist, call initializeDB. Also update shared pref to exist now
-         if (!sharedPref.getBoolean(KEY_SHARED, false)) {
-        initializeDB();
+        if (!sharedPref.getBoolean(KEY_SHARED, false)) {
+            initializeDB();
         }
-
         restaurantsButton = (Button) findViewById(R.id.button_restaurants);
         attractionsButton = (Button) findViewById(R.id.button_attractions);
         shoppingButton = (Button) findViewById(R.id.button_shopping);
@@ -65,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
                 setIntents(TYPE_RESTAURANTS);
             }
         });
-
         attractionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,16 +66,13 @@ public class MainActivity extends AppCompatActivity {
                 setIntents(TYPE_SHOPPING);
             }
         });
-
         hotelsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setIntents(TYPE_HOTELS);
             }
         });
-
-
-     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,6 +85,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_results, menu);
+
+        // Associates the  searchable configuration with the SearchView
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        android.support.v7.widget.SearchView searchView =
+                (android.support.v7.widget.SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+        return true;
+    }
 
     private void initializeDB() {
         helper.addItem("Saturnus", TYPE_RESTAURANTS, "Eriksbergsgatan 6, Stockholm", "Norrmalm/Vasastan", getString(R.string.saturnus), R.drawable.saturnus);
@@ -118,27 +116,20 @@ public class MainActivity extends AppCompatActivity {
         helper.addItem("Djurgarden", TYPE_ATTRACTIONS, "Djurgarden, Stockholm", "Djurgarden", getString(R.string.djurgarden), R.drawable.djurgarden);
         helper.addItem("Stockholm Consert Hall", TYPE_ATTRACTIONS, "Hotorget, Stockholm", "Hamngatan 18-20, Stockholm", getString(R.string.sthlm_concet_hall), R.drawable.sthlm_concert_hall);
 
-
         helper.addItem("Mood", TYPE_SHOPPING, "Regeringsgatan 48, Stockholm", "Norrmalm/Vasastan", getString(R.string.mood), R.drawable.mood_gallerian);
         helper.addItem("Ahlens", TYPE_SHOPPING, "Klarabergsgatan 50, Stockholm", "Norrmalm/Vasastan", getString(R.string.ahlens), R.drawable.ahlens);
         helper.addItem("NK", TYPE_SHOPPING, "Hamngatan 18-20, Stockholm", "Norrmalm/Vasastan", getString(R.string.nk), R.drawable.nk);
-
 
         helper.addItem("Hotel Diplomat", TYPE_HOTELS, "Strandvagen 7C, Stockholm", "Ostermalm", getString(R.string.diplomat), R.drawable.diplomat);
         helper.addItem("Grand Hôtel", TYPE_HOTELS, "Sodra Blasieholmshamnen 8, Stockholm", "Ostermalm", getString(R.string.grand), R.drawable.grandhotel);
         helper.addItem("Berns", TYPE_HOTELS, "Nackstramsgatan 8, Stockholm", "Ostermalm", getString(R.string.berns), R.drawable.berns);
 
-
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putBoolean(KEY_SHARED, true);
         editor.apply();
-
-
     }
 
-
-
-   private void setIntentMainToFavorite(String favorite) {
+    private void setIntentMainToFavorite(String favorite) {
         Intent intentMainToFavorite = new Intent(MainActivity.this, FavoriteActivity.class);
         intentMainToFavorite.putExtra(KEY_FAVORITES, favorite);
         startActivity(intentMainToFavorite);
@@ -146,33 +137,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void setIntents(String type) {
 
-
         Intent intentMainToResultsActivity = new Intent(MainActivity.this, ResultsActivity.class);
         intentMainToResultsActivity.putExtra(KEY_TYPE, type);
-
-
         startActivity(intentMainToResultsActivity);
     }
-
-    /**
-     * @param menu
-     * @return
-     */
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_results, menu);
-
-        // Associates the  searchable configuration with the SearchView
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        android.support.v7.widget.SearchView searchView =
-                (android.support.v7.widget.SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
-
-        return true;
-    }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -180,18 +148,12 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return false;
         //return super.onOptionsItemSelected(item);
     }
 
-
 }
-
-
-

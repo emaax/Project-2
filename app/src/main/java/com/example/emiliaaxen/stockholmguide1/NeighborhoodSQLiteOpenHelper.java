@@ -159,19 +159,19 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-   public String getTypeById(int id){
+    public String getTypeById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME,
                 new String[]{COL_ITEM_TYPE},
-                COL_ID+" = ?",
+                COL_ID + " = ?",
                 new String[]{String.valueOf(id)},
                 null,
                 null,
                 null,
                 null);
 
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             return cursor.getString(cursor.getColumnIndex(COL_ITEM_TYPE));
         } else {
             return "No Type Found"; //or "No Description Found";
@@ -179,19 +179,19 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
 
-    public String getNameById(int id){
+    public String getNameById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME,
                 new String[]{COL_ITEM_NAME},
-                COL_ID+" = ?",
+                COL_ID + " = ?",
                 new String[]{String.valueOf(id)},
                 null,
                 null,
                 null,
                 null);
 
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             return cursor.getString(cursor.getColumnIndex(COL_ITEM_NAME));
         } else {
             return "No Name Found"; //or No Description Found?
@@ -199,63 +199,64 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
 
-
-    public String getAddressById(int id){
+    public String getAddressById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME,
                 new String[]{COL_ITEM_ADDRESS},
-                COL_ID+" = ?",
+                COL_ID + " = ?",
                 new String[]{String.valueOf(id)},
                 null,
                 null,
                 null,
                 null);
 
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             return cursor.getString(cursor.getColumnIndex(COL_ITEM_ADDRESS));
         } else {
             return "No Address Found";//"No Description Found";
         }
     }
 
-    public String getLocationById(int id){
+    public String getLocationById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME,
                 new String[]{COL_ITEM_LOCATION},
-                COL_ID+" = ?",
+                COL_ID + " = ?",
                 new String[]{String.valueOf(id)},
                 null,
                 null,
                 null,
                 null);
 
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             return cursor.getString(cursor.getColumnIndex(COL_ITEM_LOCATION));
         } else {
             return "No Location Found"; // or "No Description Found";
         }
     }
-    public String getDescriptionById(int id){
+
+    public String getDescriptionById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME,
                 new String[]{COL_ITEM_DESCRIPTION},
-                COL_ID+" = ?",
+                COL_ID + " = ?",
                 new String[]{String.valueOf(id)},
                 null,
                 null,
                 null,
                 null);
 
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             return cursor.getString(cursor.getColumnIndex(COL_ITEM_DESCRIPTION));
         } else {
             return "No Description Found";
         }
     }
-    public int getImageById(int id){
+
+    public int getImageById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME,
@@ -267,21 +268,21 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
                 null,
                 null);
 
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             return cursor.getInt(cursor.getColumnIndex(COL_ITEM_IMAGE));
         } else {
             return 0;
         }
     }
 
-    public void setFavoriteById(int id, boolean isFavorite){
+    public void setFavoriteById(int id, boolean isFavorite) {
         ContentValues values = new ContentValues();
         values.put(COL_ITEM_FAV, isFavorite);
         SQLiteDatabase db = this.getWritableDatabase();
-        db.update(NEIGHBORHOOD_LIST_TABLE_NAME, values, COL_ID+" = ?", new String[]{String.valueOf(id)});
+        db.update(NEIGHBORHOOD_LIST_TABLE_NAME, values, COL_ID + " = ?", new String[]{String.valueOf(id)});
     }
 
-    public int getFavoriteById(int id){
+    public int getFavoriteById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME,
@@ -293,26 +294,23 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
                 null,
                 null);
 
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             return cursor.getInt(cursor.getColumnIndex(COL_ITEM_FAV));
         } else {
             return 0;
         }
     }
 
-
-
-
     public static NeighborhoodSQLiteOpenHelper getInstance(Context context) {
         // if it is the very first time we are running getInstance method, are m instance is going to be null, as er
-        if (mInstance == null){
+        if (mInstance == null) {
             //setts our one true database
             mInstance = new NeighborhoodSQLiteOpenHelper(context);
         }
         return mInstance;
     }
 
-    public int deleteItem(int id){
+    public int deleteItem(int id) {
         SQLiteDatabase db = getWritableDatabase();
         int deleteNum = db.delete(NEIGHBORHOOD_LIST_TABLE_NAME,
                 COL_ID + " = ?",
