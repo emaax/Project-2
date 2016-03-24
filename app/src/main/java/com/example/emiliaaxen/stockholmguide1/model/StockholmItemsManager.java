@@ -233,7 +233,7 @@ public class StockholmItemsManager {
         grand.setImageResourceId(R.drawable.grandhotel);
 
         StockholmItem berns = new StockholmItem();
-        berns.setName(context.getString(R.string.berns));
+        berns.setName(context.getString(R.string.berns_name));
         berns.setType(TYPE_HOTELS);
         berns.setAddress("Nackstramsgatan 8, Stockholm");
         berns.setNeighborhood(context.getString(R.string.neighborhood_djurgarden));

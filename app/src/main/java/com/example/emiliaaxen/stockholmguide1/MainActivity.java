@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         initializeClickListeners();
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
