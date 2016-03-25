@@ -25,15 +25,21 @@ public class RestaurantTest {
 
 
     @Test
-    public void TestIfRestaurantLocationIsCorrect(){
+    public void TestIfRestaurantNeighborhoodIsCorrect(){
+        StockholmItem restaurantNeighborhood = new StockholmItem();
+        restaurantNeighborhood.setNeighborhood("Norrmalm/Vasastan");
+
+
+        String expected = "Saturnus";
+        String actual = restaurantNeighborhood.getName();
+        assertEquals(expected, actual);
+
+    }
 
     }
     @Test
     public void TestIfRestaurantAddressIsCorrect(){
 
     }
-    @Test
-    public void TestIfRestaurantNeighborhoodIsCorrect(){
-
-    }
+   
 }
