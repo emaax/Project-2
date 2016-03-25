@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String PREF_KEY_FIRST_APP_RUN = "prefKeyFirstAppRun";
     //region private Variables
-
     private Button restaurantsButton;
     private Button attractionsButton;
     private Button shoppingButton;
@@ -65,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Associates the  searchable configuration with the SearchView
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView) menu.findItem(R.id.search).getActionView();
+        android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView)
+                menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         return true;
     }
@@ -74,14 +74,15 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<StockholmItem> stockholmItems = StockholmItemsManager.getStockholmItems(this);
 
         for (StockholmItem item : stockholmItems) {
-            helper.addItem(item.getName(), item.getType(), item.getAddress(), item.getNeighborhood(), item.getDescription(), item.getImageResourceId());
+            helper.addItem(item.getName(), item.getType(), item.getAddress(), item.getNeighborhood(),
+                    item.getDescription(), item.getImageResourceId());
 
         }
     }
 
     /**
-     * Returns an intent with the value set as an extra. The intent will launch the class being passed in
-     *
+     * Returns an intent with the value set as an extra.
+     * The intent will launch the class being passed in
      * @param value String value for the key
      * @param classToLaunch The activity that will launch
      * @return Intent to launch the activity with the extra value
@@ -120,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Sets Click Listener for the Buttons that opens the #ResultsActivity.class
      * for the specific type
-     *
      * @param button Button
      * @param type   String,
      */

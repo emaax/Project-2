@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 /**
  * Created by emiliaaxen on 16-03-18.
+ *
+ * This class handles the Database "items".
  */
 public class StockholmItemsManager {
 
@@ -33,6 +35,12 @@ public class StockholmItemsManager {
         return stockholmItems;
     }
 
+    /**
+     *
+     *
+      * @param context
+     * @return an Array list containing the Restaurants Items
+     */
     private static ArrayList<StockholmItem> getRestaurantItems(Context context) {
 
         StockholmItem saturnus = new StockholmItem();
@@ -123,7 +131,11 @@ public class StockholmItemsManager {
         return restaurants;
     }
 
-
+    /**
+     *
+     * @param context
+     * @return an Array list containing the Attractions Items
+     */
     private static ArrayList<StockholmItem> getAttractionItems(Context context) {
 
         StockholmItem nordicmuseum = new StockholmItem();
@@ -178,6 +190,11 @@ public class StockholmItemsManager {
         return attractions;
     }
 
+    /**
+     *
+     * @param context
+     * @return an Array list containing the Shopping Items
+     */
     private static ArrayList<StockholmItem> getShoppingItems(Context context) {
 
         StockholmItem ahlens = new StockholmItem();
@@ -213,6 +230,11 @@ public class StockholmItemsManager {
         return shopping;
     }
 
+    /**
+     *
+     * @param context
+     * @return an Array list containing the Hotel Items
+     */
     private static ArrayList<StockholmItem> getHotelItems(Context context) {
         StockholmItem diplomat = new StockholmItem();
         diplomat.setName(context.getString(R.string.diplomat_name));
