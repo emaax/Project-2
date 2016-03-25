@@ -36,10 +36,10 @@ public class RestaurantTest {
 
     }
 
-    }
+
     @Test
     public void TestIfRestaurantAddressIsCorrect(){
 
     }
-   
+
 }
