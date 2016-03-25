@@ -11,11 +11,12 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
 
-    //tag for debugging purposes
-//getting the truest
+    //Class members:
+
+
     private static final String TAG = NeighborhoodSQLiteOpenHelper.class.getCanonicalName();
 
-
+    // Defining the database name and version
     private static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "NEIGHBORHOOD_DB";
     public static final String NEIGHBORHOOD_LIST_TABLE_NAME = "NEIGHBORHOOD_LIST";
@@ -31,14 +32,11 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
     public static final String COL_ITEM_FAV = "FAVORITE";
 
 
-//declaring the one instance, the one object, of NeighborhoodSQLiteOpenHelper. This is the one thing that all other classes will access with getInstance
-
     private static NeighborhoodSQLiteOpenHelper mInstance;
 
 
-    //Declaring (dgiving the array a name and  deciding  varaibles and)  an array of the Neighborhood column names.. It only  holds the column names
     public static final String[] NEIGHBORHOOD_COLUMNS = {COL_ID, COL_ITEM_TYPE, COL_ITEM_NAME, COL_ITEM_ADDRESS, COL_ITEM_NEIGHBORHOOD, COL_ITEM_DESCRIPTION, COL_ITEM_IMAGE, COL_ITEM_FAV};
-    // Declaring the string the holds the Sql call that will create our table
+
     private static final String CREATE_NEIGHBORHOOD_LIST_TABLE = "CREATE TABLE " + NEIGHBORHOOD_LIST_TABLE_NAME +
             "(" +
             COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -50,12 +48,18 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
             COL_ITEM_IMAGE + " INTEGER, " +
             COL_ITEM_FAV + " BOOLEAN )";
 
-    // this is our constructur for SQLiteOpenHelper
+    /**
+     * @param context The Context attached to the database
+     */
     public NeighborhoodSQLiteOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    // method that runs the first time you open up the database //exec= execute
+    /**
+     * Invoked when the database is created
+     * Creates the Neighborhood list table when the database is created
+     * @param db Database
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_NEIGHBORHOOD_LIST_TABLE);
@@ -67,11 +71,17 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
         this.onCreate(db);
     }
 
+    /**
+     * @param name         String
+     * @param type         String
+     * @param address      String
+     * @param neighborhood String
+     * @param description  String
+     * @param image        String
+     * @return
+     */
     //Add new itinerary list
     public long addItem(String name, String type, String address, String neighborhood, String description, int image) {
-
-        // Our table has five columns,COL_ITEM_NAME, COL_ITEM_TYPE, ... these are all Keys for the values map. We will give the the arguments as values, in other words
-        // We're taking the argument "name", and giving it the value name.. and putting it in the key called key col_item_name,
 
         //insert values into the NEIGHBORHOOD_LIST table
 
@@ -85,18 +95,17 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
         values.put(COL_ITEM_FAV, false);
         SQLiteDatabase db = this.getWritableDatabase();
 
-        //inserts a row , which hold the values of the different keys, stated above. Eaches key is a different column
+        //inserts a row , which hold the values of the different keys, stated above. Each key is a different column
         long returnId = db.insert(NEIGHBORHOOD_LIST_TABLE_NAME, null, values);
         db.close();
         return returnId;
     }
 
-
-    // gets the cursor to send the full NBlist, i.e the complete table of the database to the activity that calls the cursor.
+    // gets the cursor to send the full list, i.e the complete table of the database to the activity that calls the cursor.
     public Cursor getNeighborhoodList() {
 
         SQLiteDatabase db = this.getReadableDatabase();
-        //gets the cursor from the query. The only thing that will changes is the "things" that we put in
+        //gets the cursor from the query. T
 
         Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME, // a. table
                 NEIGHBORHOOD_COLUMNS, // b. column names
@@ -110,9 +119,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-
     //gets the cursor to send the NBlist by type, i.e gets de data for all of the columns, based on types
-
     public Cursor searchNeighborhoodByType(String query) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -176,7 +183,6 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
             return "No Type Found"; //or "No Description Found";
         }
     }
-
 
     public String getNameById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();

@@ -11,12 +11,13 @@ import android.widget.TextView;
 
 public class DetailActivity extends AppCompatActivity {
 
-    TextView textViewItemType;
-    TextView textViewItemName;
-    TextView textViewItemAddress;
-    TextView textViewItemLocation;
-    TextView textViewItemDescription;
-    ImageView imageViewItemImage;
+     TextView textViewItemType;
+     TextView textViewItemName;
+     TextView textViewItemAddress;
+     TextView textViewItemLocation;
+     TextView textViewItemDescription;
+     ImageView imageViewItemImage;
+
     private int itemIsClickedAsFavorite = 0;
     int id;
 
@@ -26,42 +27,50 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         final NeighborhoodSQLiteOpenHelper helper = NeighborhoodSQLiteOpenHelper.getInstance(DetailActivity.this);
 
-        textViewItemType = (TextView) findViewById(R.id.item_type_text_view);
-        textViewItemName = (TextView) findViewById(R.id.item_name_text_view);
-        textViewItemAddress = (TextView) findViewById(R.id.item_address_text_view);
-        textViewItemLocation = (TextView) findViewById(R.id.item_location_text_view);
-        textViewItemDescription = (TextView) findViewById(R.id.item_description_text_view);
-        imageViewItemImage = (ImageView) findViewById(R.id.item_image_view);
+        //textViewItemType = (TextView) findViewById(R.id.item_type_text_view);
+        //textViewItemName = (TextView) findViewById(R.id.item_name_text_view);
+        //textViewItemAddress = (TextView) findViewById(R.id.item_address_text_view);
+        //textViewItemLocation = (TextView) findViewById(R.id.item_location_text_view);
+        //textViewItemDescription = (TextView) findViewById(R.id.item_description_text_view);
+        //imageViewItemImage = (ImageView) findViewById(R.id.item_image_view);
 
         id = getIntent().getIntExtra("id", -1);
         if (id >= 0) {
+
             //populate the type
             String type = helper.getTypeById(id);
             textViewItemType = (TextView) findViewById(R.id.item_type_text_view);
             textViewItemType.setText(type);
+
             //populate the item image
             int image = helper.getImageById(id);
             imageViewItemImage = (ImageView) findViewById(R.id.item_image_view);
             imageViewItemImage.setBackgroundResource(image);
+
             //Populate the item name
             String name = helper.getNameById(id);
             textViewItemName = (TextView) findViewById(R.id.item_name_text_view);
             textViewItemName.setText(name);
+
             //Populate the item address
             String address = helper.getAddressById(id);
             textViewItemAddress = (TextView) findViewById(R.id.item_address_text_view);
             textViewItemAddress.setText("ADDRESS: " + address);
+
             //Populate the item location
             String location = helper.getLocationById(id);
             textViewItemLocation = (TextView) findViewById(R.id.item_location_text_view);
             textViewItemLocation.setText("NEIGHBORHOOD: " + location);
+
             //Populate the item description
             String description = helper.getDescriptionById(id);
             textViewItemDescription = (TextView) findViewById(R.id.item_description_text_view);
             textViewItemDescription.setText("ABOUT: " + description);
+
             //Populate the favorite "check button"
             itemIsClickedAsFavorite = helper.getFavoriteById(id);
             if (itemIsClickedAsFavorite == 0) {

@@ -194,7 +194,7 @@ public class StockholmItemsManager {
         mood.setAddress("Regeringsgatan 48, Stockholm");
         mood.setNeighborhood(context.getString(R.string.neighborhood_norrmalmvasa));
         mood.setDescription(context.getString(R.string.mood));
-        mood.setImageResourceId(R.drawable.mood_gallerian);
+        mood.setImageResourceId(R.drawable.mood_shopping);
 
         StockholmItem nk = new StockholmItem();
         nk.setName(context.getString(R.string.nk_name));

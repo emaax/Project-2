@@ -22,15 +22,15 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    //region private Variables
     private static final String PREF_KEY_FIRST_APP_RUN = "prefKeyFirstAppRun";
+    //region private Variables
 
-    private SharedPreferences sharedPref;
     private Button restaurantsButton;
     private Button attractionsButton;
     private Button shoppingButton;
     private Button hotelsButton;
 
+    private SharedPreferences sharedPref;
     private NeighborhoodSQLiteOpenHelper helper;
     //endregion private Variables
 
@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**Returns an intent with the value set as an extra. The intent will launch the class that's being passed
-     * in
+    /**
+     * Returns an intent with the value set as an extra. The intent will launch the class being passed in
      *
      * @param value String value for the key
      * @param classToLaunch The activity that will launch
@@ -118,10 +118,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *  Click Listener for the "type"Buttons that opens the #ResultsActivity.class for the specific type
+     * Sets Click Listener for the Buttons that opens the #ResultsActivity.class
+     * for the specific type
      *
      * @param button Button
-     * @param type String,
+     * @param type   String,
      */
     private void setButtonClickListener(Button button, final String type) {
         button.setOnClickListener(new View.OnClickListener() {
@@ -134,7 +135,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Click Listener for that opens the #FavoriteActivity.class, i.e takes the user to Favorites screen.
+     * Click Listener for the fab Button ( favorites) that opens the #FavoriteActivity.class,
+     * i.e takes the user to Favorites screen.
      */
     private void setFabClickListener() {
 

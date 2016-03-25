@@ -36,7 +36,7 @@ public class ResultsActivity extends AppCompatActivity {
         //Gets an instance of your database helper
         mNeighborhoodListView = (ListView) findViewById(R.id.neighborhood_list_view);
         mHelper = NeighborhoodSQLiteOpenHelper.getInstance(ResultsActivity.this);
-
+        handleIntent(getIntent());
         type = getIntent().getStringExtra(MainActivity.KEY_TYPE);
 
 
@@ -61,7 +61,9 @@ public class ResultsActivity extends AppCompatActivity {
         /*Gets the data for the individual item when it's being clicked on.This is done by passing the id column value into
         the intent in the ResultsActivity in the item click listener.*/
 
-
+/**
+ *
+ */
         mNeighborhoodListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -72,7 +74,7 @@ public class ResultsActivity extends AppCompatActivity {
             }
         });
 
-       // handleIntent(getIntent());
+       //
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -96,7 +98,7 @@ public class ResultsActivity extends AppCompatActivity {
     private void handleIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            //Creat a new search function
+            //Creates a new search function
             cursor = mHelper.searchingNeighborhoodByName(query, type);
             mCursorAdapter.changeCursor(cursor);
             mCursorAdapter.notifyDataSetChanged();
