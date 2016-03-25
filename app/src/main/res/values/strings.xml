@@ -80,7 +80,7 @@
     <string name="neighborhood_sodermalm">"Sodermalm"</string>
     <string name="neighborhood_djurgarden">"Djurgarden"</string>
 
-    <string name="sallyochsystrar_web">http://www.sallyochsystrar.se"</string>
-    <string name="flyingelk_web">http://www.theflyingelk.se"</string>
+    <string name="sallyochsystrar_web">http://www.sallyochsystrar.com"</string>
+    <string name="flyingelk_web">http://www.theflyingelk.com"</string>
     <string name="google_web">http://www.google.com"</string>
 </resources>

@@ -1,12 +1,15 @@
 package com.example.emiliaaxen.stockholmguide1;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.util.Linkify;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -90,8 +93,8 @@ public class DetailActivity extends AppCompatActivity {
         imageViewItemImage = (ImageView) findViewById(R.id.item_image_view);
         textViewItemWebSite = (TextView)findViewById(R.id.item_website);
 
-
     }
+
 
     public void setInfo() {
         id = getIntent().getIntExtra("id", -1);
@@ -131,6 +134,8 @@ public class DetailActivity extends AppCompatActivity {
                 Intent webSiteIntent = new Intent(Intent.ACTION_VIEW);
                 webSiteIntent.setData(Uri.parse(helper.getWebSiteById(id)));
                 startActivity(webSiteIntent);
+
+
             }
         });
     }
