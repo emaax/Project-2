@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
         for (StockholmItem item : stockholmItems) {
             helper.addItem(item.getName(), item.getType(), item.getAddress(), item.getNeighborhood(),
-                    item.getDescription(), item.getImageResourceId());
+                    item.getDescription(), item.getImageResourceId(), item.getWebsite());
 
         }
     }

@@ -50,6 +50,7 @@ public class StockholmItemsManager {
         saturnus.setNeighborhood(context.getString(R.string.neighborhood_norrmalmvasa));
         saturnus.setDescription(context.getString(R.string.saturnus));
         saturnus.setImageResourceId(R.drawable.saturnus);
+        saturnus.setWebsite(context.getString(R.string.sallyochsystrar_web));
 
         StockholmItem sally = new StockholmItem();
         sally.setName(context.getString(R.string.sallyochsystrar_name));
@@ -58,6 +59,7 @@ public class StockholmItemsManager {
         sally.setNeighborhood(context.getString(R.string.neighborhood_norrmalmvasa));
         sally.setDescription(context.getString(R.string.sallyochsystrar));
         sally.setImageResourceId(R.drawable.sally);
+        sally.setWebsite(context.getString(R.string.sallyochsystrar_web));
 
         StockholmItem flyingelk = new StockholmItem();
         flyingelk.setName(context.getString(R.string.flyingelk_name));
@@ -66,6 +68,7 @@ public class StockholmItemsManager {
         flyingelk.setNeighborhood(context.getString(R.string.neighborhood_sodermalm));
         flyingelk.setDescription(context.getString(R.string.flyingelk));
         flyingelk.setImageResourceId(R.drawable.flying);
+        flyingelk.setWebsite(context.getString(R.string.flyingelk_web));
 
         StockholmItem snickarbacken = new StockholmItem();
         snickarbacken.setName(context.getString(R.string.snickarbacken_name));
@@ -74,6 +77,8 @@ public class StockholmItemsManager {
         snickarbacken.setNeighborhood(context.getString(R.string.neighborhood_ostermalm));
         snickarbacken.setDescription(context.getString(R.string.snickarbacken));
         snickarbacken.setImageResourceId(R.drawable.snickarbacken);
+        snickarbacken.setWebsite(context.getString(R.string.sallyochsystrar_web));
+
 
         StockholmItem meatballs = new StockholmItem();
         meatballs.setName(context.getString(R.string.meatball_name));
@@ -82,6 +87,7 @@ public class StockholmItemsManager {
         meatballs.setNeighborhood(context.getString(R.string.neighborhood_sodermalm));
         meatballs.setDescription(context.getString(R.string.meatball));
         meatballs.setImageResourceId(R.drawable.meatballs_for_the_people);
+        meatballs.setWebsite(context.getString(R.string.google_web));
 
         StockholmItem sturehof = new StockholmItem();
         sturehof.setName(context.getString(R.string.sturehof_name));
@@ -90,6 +96,7 @@ public class StockholmItemsManager {
         sturehof.setNeighborhood(context.getString(R.string.neighborhood_ostermalm));
         sturehof.setDescription(context.getString(R.string.sturehof));
         sturehof.setImageResourceId(R.drawable.sturehof);
+        sturehof.setWebsite(context.getString(R.string.google_web));
 
         StockholmItem flippinburg = new StockholmItem();
         flippinburg.setName(context.getString(R.string.flippinburgers_name));
@@ -98,6 +105,7 @@ public class StockholmItemsManager {
         flippinburg.setNeighborhood(context.getString(R.string.neighborhood_norrmalmvasa));
         flippinburg.setDescription(context.getString(R.string.flippinburgers));
         flippinburg.setImageResourceId(R.drawable.flippinburgers);
+        flippinburg.setWebsite(context.getString(R.string.google_web));
 
         StockholmItem blaporten = new StockholmItem();
         blaporten.setName(context.getString(R.string.blaporten_name));
@@ -106,6 +114,7 @@ public class StockholmItemsManager {
         blaporten.setNeighborhood(context.getString(R.string.neighborhood_djurgarden));
         blaporten.setDescription(context.getString(R.string.blaporten));
         blaporten.setImageResourceId(R.drawable.bla_porten);
+        blaporten.setWebsite(context.getString(R.string.google_web));
 
         StockholmItem urbandeli = new StockholmItem();
         urbandeli.setName(context.getString(R.string.urbandeli_name));
@@ -114,6 +123,7 @@ public class StockholmItemsManager {
         urbandeli.setNeighborhood(context.getString(R.string.neighborhood_sodermalm));
         urbandeli.setDescription(context.getString(R.string.urbandeli));
         urbandeli.setImageResourceId(R.drawable.urbandeli);
+        urbandeli.setWebsite(context.getString(R.string.google_web));
 
 
         ArrayList<StockholmItem> restaurants = new ArrayList<>();
@@ -145,6 +155,7 @@ public class StockholmItemsManager {
         nordicmuseum.setNeighborhood(context.getString(R.string.neighborhood_djurgarden));
         nordicmuseum.setDescription(context.getString(R.string.nordic_museum));
         nordicmuseum.setImageResourceId(R.drawable.nordiskamuseumet);
+        nordicmuseum.setWebsite(context.getString(R.string.google_web));
 
         StockholmItem djurgarden = new StockholmItem();
         djurgarden.setName(context.getString(R.string.djurgarden_name));
@@ -153,6 +164,7 @@ public class StockholmItemsManager {
         djurgarden.setNeighborhood(context.getString(R.string.neighborhood_djurgarden));
         djurgarden.setDescription(context.getString(R.string.djurgarden));
         djurgarden.setImageResourceId(R.drawable.djurgarden);
+        djurgarden.setWebsite(context.getString(R.string.google_web));
 
         StockholmItem oldTown = new StockholmItem();
         oldTown.setName(context.getString(R.string.old_town_name));
@@ -161,6 +173,7 @@ public class StockholmItemsManager {
         oldTown.setNeighborhood("Old town");
         oldTown.setDescription(context.getString(R.string.old_town));
         oldTown.setImageResourceId(R.drawable.old_town);
+        oldTown.setWebsite(context.getString(R.string.google_web));
 
         StockholmItem sthlmConsert = new StockholmItem();
         sthlmConsert.setName(context.getString(R.string.sthlm_concet_hall_name));
@@ -169,6 +182,7 @@ public class StockholmItemsManager {
         sthlmConsert.setNeighborhood(context.getString(R.string.neighborhood_norrmalmvasa));
         sthlmConsert.setDescription(context.getString(R.string.sthlm_concet_hall));
         sthlmConsert.setImageResourceId(R.drawable.sthlm_concert_hall);
+        sthlmConsert.setWebsite(context.getString(R.string.google_web));
 
         StockholmItem rosendal = new StockholmItem();
         rosendal.setName(context.getString(R.string.rosendal_name));
@@ -177,6 +191,7 @@ public class StockholmItemsManager {
         rosendal.setNeighborhood(context.getString(R.string.neighborhood_djurgarden));
         rosendal.setDescription(context.getString(R.string.rosendal));
         rosendal.setImageResourceId(R.drawable.rosendal);
+        rosendal.setWebsite(context.getString(R.string.google_web));
 
         ArrayList<StockholmItem> attractions = new ArrayList<>();
 
@@ -204,6 +219,7 @@ public class StockholmItemsManager {
         ahlens.setNeighborhood(context.getString(R.string.neighborhood_norrmalmvasa));
         ahlens.setDescription(context.getString(R.string.ahlens));
         ahlens.setImageResourceId(R.drawable.ahlens);
+        ahlens.setWebsite(context.getString(R.string.google_web));
 
         StockholmItem mood = new StockholmItem();
         mood.setName(context.getString(R.string.mood_name));
@@ -212,6 +228,7 @@ public class StockholmItemsManager {
         mood.setNeighborhood(context.getString(R.string.neighborhood_norrmalmvasa));
         mood.setDescription(context.getString(R.string.mood));
         mood.setImageResourceId(R.drawable.mood_shopping);
+        mood.setWebsite(context.getString(R.string.google_web));
 
         StockholmItem nk = new StockholmItem();
         nk.setName(context.getString(R.string.nk_name));
@@ -220,6 +237,7 @@ public class StockholmItemsManager {
         nk.setNeighborhood(context.getString(R.string.neighborhood_norrmalmvasa));
         nk.setDescription(context.getString(R.string.nk));
         nk.setImageResourceId(R.drawable.nk);
+        nk.setWebsite(context.getString(R.string.google_web));
 
 
         ArrayList<StockholmItem> shopping = new ArrayList<>();
@@ -243,6 +261,7 @@ public class StockholmItemsManager {
         diplomat.setNeighborhood(context.getString(R.string.neighborhood_djurgarden));
         diplomat.setDescription(context.getString(R.string.diplomat));
         diplomat.setImageResourceId(R.drawable.diplomat);
+        diplomat.setWebsite(context.getString(R.string.google_web));
 
         StockholmItem grand = new StockholmItem();
         grand.setName(context.getString(R.string.grand_name));
@@ -251,6 +270,7 @@ public class StockholmItemsManager {
         grand.setNeighborhood(context.getString(R.string.neighborhood_djurgarden));
         grand.setDescription(context.getString(R.string.grand));
         grand.setImageResourceId(R.drawable.grandhotel);
+        grand.setWebsite(context.getString(R.string.google_web));
 
         StockholmItem berns = new StockholmItem();
         berns.setName(context.getString(R.string.berns_name));
@@ -259,6 +279,7 @@ public class StockholmItemsManager {
         berns.setNeighborhood(context.getString(R.string.neighborhood_djurgarden));
         berns.setDescription(context.getString(R.string.berns));
         berns.setImageResourceId(R.drawable.berns);
+        berns.setWebsite(context.getString(R.string.google_web));
 
 
         ArrayList<StockholmItem> hotels = new ArrayList<>();

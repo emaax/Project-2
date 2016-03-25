@@ -1,5 +1,7 @@
 package com.example.emiliaaxen.stockholmguide1;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.emiliaaxen.stockholmguide1.model.StockholmItem;
 
 /**
  * This is the Detail Activity, which displays the name, image, type, address, neighborhood and
@@ -24,7 +28,10 @@ public class DetailActivity extends AppCompatActivity {
     TextView textViewItemAddress;
     TextView textViewItemLocation;
     TextView textViewItemDescription;
+    TextView textViewItemWebSite;
     ImageView imageViewItemImage;
+
+
 
     private int itemIsClickedAsFavorite = 0;
     int id;
@@ -41,6 +48,8 @@ public class DetailActivity extends AppCompatActivity {
 
         helper = NeighborhoodSQLiteOpenHelper.getInstance(DetailActivity.this);
         fab = (FloatingActionButton) findViewById(R.id.fab);
+
+
 
 
         initViews();
@@ -68,15 +77,18 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
 
     public void initViews() {
         textViewItemType = (TextView) findViewById(R.id.item_type_text_view);
         textViewItemName = (TextView) findViewById(R.id.item_name_text_view);
         textViewItemAddress = (TextView) findViewById(R.id.item_address_text_view);
-        textViewItemLocation = (TextView) findViewById(R.id.item_location_text_view);
+        textViewItemLocation = (TextView) findViewById(R.id.item_neighborhood_text_view);
         textViewItemDescription = (TextView) findViewById(R.id.item_description_text_view);
         imageViewItemImage = (ImageView) findViewById(R.id.item_image_view);
+        textViewItemWebSite = (TextView)findViewById(R.id.item_website);
 
 
     }
@@ -113,5 +125,15 @@ public class DetailActivity extends AppCompatActivity {
 
 
         }
+
+        textViewItemWebSite.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent webSiteIntent = new Intent(Intent.ACTION_VIEW);
+                webSiteIntent.setData(Uri.parse(helper.getWebSiteById(id)));
+                startActivity(webSiteIntent);
+            }
+        });
     }
-}
+    }
+
+

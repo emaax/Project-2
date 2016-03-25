@@ -29,13 +29,14 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
     public static final String COL_ITEM_NEIGHBORHOOD = "LOCATION";
     public static final String COL_ITEM_DESCRIPTION = "DESCRIPTION";
     public static final String COL_ITEM_IMAGE = "IMAGE";
+    public static final String COL_ITEM_WEBSITE = "WEBSITE";
     public static final String COL_ITEM_FAV = "FAVORITE";
 
 
     private static NeighborhoodSQLiteOpenHelper mInstance;
 
 
-    public static final String[] NEIGHBORHOOD_COLUMNS = {COL_ID, COL_ITEM_TYPE, COL_ITEM_NAME, COL_ITEM_ADDRESS, COL_ITEM_NEIGHBORHOOD, COL_ITEM_DESCRIPTION, COL_ITEM_IMAGE, COL_ITEM_FAV};
+    public static final String[] NEIGHBORHOOD_COLUMNS = {COL_ID, COL_ITEM_TYPE, COL_ITEM_NAME, COL_ITEM_ADDRESS, COL_ITEM_NEIGHBORHOOD, COL_ITEM_DESCRIPTION, COL_ITEM_IMAGE, COL_ITEM_WEBSITE, COL_ITEM_FAV};
 
     private static final String CREATE_NEIGHBORHOOD_LIST_TABLE = "CREATE TABLE " + NEIGHBORHOOD_LIST_TABLE_NAME +
             "(" +
@@ -46,6 +47,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
             COL_ITEM_NEIGHBORHOOD + " TEXT, " +
             COL_ITEM_DESCRIPTION + " TEXT, " +
             COL_ITEM_IMAGE + " INTEGER, " +
+            COL_ITEM_WEBSITE + " TEXT, " +
             COL_ITEM_FAV + " BOOLEAN )";
 
     /**
@@ -81,7 +83,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
      * @return
      */
     //Add new itinerary list
-    public long addItem(String name, String type, String address, String neighborhood, String description, int image) {
+    public long addItem(String name, String type, String address, String neighborhood, String description, int image, String webpage) {
 
         //insert values into the NEIGHBORHOOD_LIST table
 
@@ -92,6 +94,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
         values.put(COL_ITEM_NEIGHBORHOOD, neighborhood);
         values.put(COL_ITEM_DESCRIPTION, description);
         values.put(COL_ITEM_IMAGE, image);
+        values.put(COL_ITEM_WEBSITE, webpage);
         values.put(COL_ITEM_FAV, false);
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -279,6 +282,29 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
             return 0;
         }
     }
+
+
+public String getWebSiteById(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME,
+                new String[]{COL_ITEM_WEBSITE},
+                COL_ID + " = ?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null,
+                null);
+
+        if (cursor.moveToFirst()) {
+            return cursor.getString(cursor.getColumnIndex(COL_ITEM_WEBSITE));
+        } else {
+            return "No Website Found";
+        }
+    }
+
+
+
 
     public void setFavoriteById(int id, boolean isFavorite) {
         ContentValues values = new ContentValues();

@@ -10,6 +10,7 @@ public class StockholmItem {
     private String address;
     private String description;
     private String neighborhood;
+    private static String website;
     private int imageResourceId;
     private boolean favorite;
 
@@ -66,6 +67,14 @@ public class StockholmItem {
     public void setType(String type) {
         this.type = type;
     }
+    public static String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
 
     public boolean isFavorite() {
         return favorite;
