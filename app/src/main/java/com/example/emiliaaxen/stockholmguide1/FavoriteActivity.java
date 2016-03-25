@@ -23,8 +23,8 @@ public class FavoriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
         Log.d("Favorite activity", "where is it");
-        favoriteList = (ListView) findViewById(R.id.list_favorites);
 
+        favoriteList = (ListView) findViewById(R.id.list_favorites);
         favoriteList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

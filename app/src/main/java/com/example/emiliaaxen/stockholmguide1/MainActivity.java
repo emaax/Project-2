@@ -79,10 +79,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**Returns an intent with the value set as an extra. The intent will launch the class being passed
+    /**Returns an intent with the value set as an extra. The intent will launch the class that's being passed
      * in
      *
-     * @param key
      * @param value String value for the key
      * @param classToLaunch The activity that will launch
      * @return Intent to launch the activity with the extra value
@@ -96,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method will initialize all the views which are used by this activity
+     * This method will initialize all the views which are used by the activity
      */
     private void initializeViews() {
         restaurantsButton = (Button) findViewById(R.id.button_restaurants);
@@ -108,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method initializes the clickListeners for all views in the activity
+     * This method sets the clickListeners for all views in the activity
      */
     private void initializeClickListeners() {
         setButtonClickListener(restaurantsButton, StockholmItemsManager.TYPE_RESTAURANTS);
@@ -119,9 +118,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Buttonfor the KEY_TYPES; i.e for the type
+     *  Click Listener for the "type"Buttons that opens the #ResultsActivity.class for the specific type
      *
-     * @param button Buttons
+     * @param button Button
      * @param type String,
      */
     private void setButtonClickListener(Button button, final String type) {
@@ -134,6 +133,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Click Listener for that opens the #FavoriteActivity.class, i.e takes the user to Favorites screen.
+     */
     private void setFabClickListener() {
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

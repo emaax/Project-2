@@ -39,19 +39,29 @@ public class ResultsActivity extends AppCompatActivity {
 
         type = getIntent().getStringExtra(MainActivity.KEY_TYPE);
 
+
+
+
         if (type.equals(MainActivity.KEY_FAVORITES)) {
             cursor = mHelper.searchNeighborhoodByType(favorite);
         } else {
             cursor = mHelper.searchNeighborhoodByType(type);
         }
         //Create a cursor
+
+
         cursor = mHelper.searchNeighborhoodByType(type);
-        // Gets the query from the database helper called getNeighborhoodList, which is a cursor of all of the data                         SHOULD IT BE NAME
+
+
+
+      // Gets the query from the database helper called getNeighborhoodList, which is a cursor of all of the data                         SHOULD IT BE NAME
         mCursorAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_activated_1, cursor, new String[]{NeighborhoodSQLiteOpenHelper.COL_ITEM_NAME}, new int[]{android.R.id.text1}, 0);
         mNeighborhoodListView.setAdapter(mCursorAdapter);
 
         /*Gets the data for the individual item when it's being clicked on.This is done by passing the id column value into
         the intent in the ResultsActivity in the item click listener.*/
+
+
         mNeighborhoodListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

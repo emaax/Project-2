@@ -11,7 +11,6 @@ import java.util.ArrayList;
  */
 public class StockholmItemsManager {
 
-    //region Private Variables
     public static final String TYPE_RESTAURANTS = "Restaurants";
     public static final String TYPE_ATTRACTIONS = "Attractions";
     public static final String TYPE_SHOPPING = "Shopping";
@@ -23,7 +22,7 @@ public class StockholmItemsManager {
      * @param context
      * @return
      */
-    public static ArrayList<StockholmItem> getStockholmItems(Context context){
+    public static ArrayList<StockholmItem> getStockholmItems(Context context) {
         ArrayList<StockholmItem> stockholmItems = new ArrayList<>();
         stockholmItems.addAll(getRestaurantItems(context));
         stockholmItems.addAll(getAttractionItems(context));
@@ -34,7 +33,7 @@ public class StockholmItemsManager {
         return stockholmItems;
     }
 
-    private static ArrayList<StockholmItem> getRestaurantItems(Context context){
+    private static ArrayList<StockholmItem> getRestaurantItems(Context context) {
 
         StockholmItem saturnus = new StockholmItem();
         saturnus.setName(context.getString(R.string.saturnus_name));
@@ -109,7 +108,6 @@ public class StockholmItemsManager {
         urbandeli.setImageResourceId(R.drawable.urbandeli);
 
 
-
         ArrayList<StockholmItem> restaurants = new ArrayList<>();
 
         restaurants.add(saturnus);
@@ -126,7 +124,7 @@ public class StockholmItemsManager {
     }
 
 
-    private static ArrayList<StockholmItem> getAttractionItems(Context context){
+    private static ArrayList<StockholmItem> getAttractionItems(Context context) {
 
         StockholmItem nordicmuseum = new StockholmItem();
         nordicmuseum.setName(context.getString(R.string.nordic_museum_name));
@@ -180,7 +178,7 @@ public class StockholmItemsManager {
         return attractions;
     }
 
-    private static ArrayList<StockholmItem> getShoppingItems(Context context){
+    private static ArrayList<StockholmItem> getShoppingItems(Context context) {
 
         StockholmItem ahlens = new StockholmItem();
         ahlens.setName(context.getString(R.string.ahlens_name));
@@ -215,7 +213,7 @@ public class StockholmItemsManager {
         return shopping;
     }
 
-    private static ArrayList<StockholmItem> getHotelItems(Context context){
+    private static ArrayList<StockholmItem> getHotelItems(Context context) {
         StockholmItem diplomat = new StockholmItem();
         diplomat.setName(context.getString(R.string.diplomat_name));
         diplomat.setType(TYPE_HOTELS);
