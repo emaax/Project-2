@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
+   /* @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
         //return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     private boolean checkIfFirstTimeRunningApp() {
         boolean isFirstRun = sharedPref.getBoolean(PREF_KEY_FIRST_APP_RUN, true);

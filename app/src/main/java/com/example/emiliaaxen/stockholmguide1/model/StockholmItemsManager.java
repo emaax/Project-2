@@ -258,7 +258,7 @@ public class StockholmItemsManager {
         diplomat.setName(context.getString(R.string.diplomat_name));
         diplomat.setType(TYPE_HOTELS);
         diplomat.setAddress("Strandvagen 7C, Stockholm");
-        diplomat.setNeighborhood(context.getString(R.string.neighborhood_djurgarden));
+        diplomat.setNeighborhood(context.getString(R.string.neighborhood_ostermalm));
         diplomat.setDescription(context.getString(R.string.diplomat));
         diplomat.setImageResourceId(R.drawable.diplomat);
         diplomat.setWebsite(context.getString(R.string.google_web));
@@ -267,7 +267,7 @@ public class StockholmItemsManager {
         grand.setName(context.getString(R.string.grand_name));
         grand.setType(TYPE_HOTELS);
         grand.setAddress("Sodra Blasieholmshamnen 8, Stockholm");
-        grand.setNeighborhood(context.getString(R.string.neighborhood_djurgarden));
+        grand.setNeighborhood(context.getString(R.string.neighborhood_ostermalm));
         grand.setDescription(context.getString(R.string.grand));
         grand.setImageResourceId(R.drawable.grandhotel);
         grand.setWebsite(context.getString(R.string.google_web));
@@ -276,7 +276,7 @@ public class StockholmItemsManager {
         berns.setName(context.getString(R.string.berns_name));
         berns.setType(TYPE_HOTELS);
         berns.setAddress("Nackstramsgatan 8, Stockholm");
-        berns.setNeighborhood(context.getString(R.string.neighborhood_djurgarden));
+        berns.setNeighborhood(context.getString(R.string.neighborhood_ostermalm));
         berns.setDescription(context.getString(R.string.berns));
         berns.setImageResourceId(R.drawable.berns);
         berns.setWebsite(context.getString(R.string.google_web));
