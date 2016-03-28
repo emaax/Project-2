@@ -35,13 +35,7 @@ public class FavoriteActivity extends AppCompatActivity {
                 startActivity(favoriteToDetailIntent);
             }
         });
-
-                /*favoriteCursor.moveToPosition(position);
-                favoriteToDetailIntent.putExtra(MainActivity.KEY_FAVORITES, favoriteCursor.getInt(favoriteCursor.getColumnIndex(NeighborhoodSQLiteOpenHelper.COL_ID)));
-                startActivity(favoriteToDetailIntent);
-*/
     }
-    //  });
 
     @Override
     protected void onResume() {

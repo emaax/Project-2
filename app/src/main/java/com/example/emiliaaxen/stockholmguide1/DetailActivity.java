@@ -1,20 +1,16 @@
 package com.example.emiliaaxen.stockholmguide1;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.util.Linkify;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.emiliaaxen.stockholmguide1.model.StockholmItem;
 
 /**
  * This is the Detail Activity, which displays the name, image, type, address, neighborhood and
@@ -35,7 +31,6 @@ public class DetailActivity extends AppCompatActivity {
     ImageView imageViewItemImage;
 
 
-
     private int itemIsClickedAsFavorite = 0;
     int id;
 
@@ -51,8 +46,6 @@ public class DetailActivity extends AppCompatActivity {
 
         helper = NeighborhoodSQLiteOpenHelper.getInstance(DetailActivity.this);
         fab = (FloatingActionButton) findViewById(R.id.fab);
-
-
 
 
         initViews();
@@ -81,7 +74,6 @@ public class DetailActivity extends AppCompatActivity {
         });
 
 
-
     }
 
     public void initViews() {
@@ -91,7 +83,7 @@ public class DetailActivity extends AppCompatActivity {
         textViewItemLocation = (TextView) findViewById(R.id.item_neighborhood_text_view);
         textViewItemDescription = (TextView) findViewById(R.id.item_description_text_view);
         imageViewItemImage = (ImageView) findViewById(R.id.item_image_view);
-        textViewItemWebSite = (TextView)findViewById(R.id.item_website);
+        textViewItemWebSite = (TextView) findViewById(R.id.item_website);
 
     }
 
@@ -126,7 +118,6 @@ public class DetailActivity extends AppCompatActivity {
                 fab.setImageResource(R.drawable.item_favorite);
             }
 
-
         }
 
         textViewItemWebSite.setOnClickListener(new View.OnClickListener() {
@@ -139,6 +130,6 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
     }
-    }
+}
 
 

@@ -79,8 +79,8 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
      * @param address      String
      * @param neighborhood String
      * @param description  String
-     * @param image        String
-     * @return
+     * @param image        Integer
+
      */
     //Add new itinerary list
     public long addItem(String name, String type, String address, String neighborhood, String description, int image, String webpage) {

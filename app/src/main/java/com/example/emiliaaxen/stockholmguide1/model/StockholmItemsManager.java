@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  * Created by emiliaaxen on 16-03-18.
- *
+ * <p/>
  * This class handles the Database "items".
  */
 public class StockholmItemsManager {
@@ -36,9 +36,7 @@ public class StockholmItemsManager {
     }
 
     /**
-     *
-     *
-      * @param context
+     * @param context
      * @return an Array list containing the Restaurants Items
      */
     private static ArrayList<StockholmItem> getRestaurantItems(Context context) {
@@ -142,7 +140,6 @@ public class StockholmItemsManager {
     }
 
     /**
-     *
      * @param context
      * @return an Array list containing the Attractions Items
      */
@@ -206,7 +203,6 @@ public class StockholmItemsManager {
     }
 
     /**
-     *
      * @param context
      * @return an Array list containing the Shopping Items
      */
@@ -249,7 +245,6 @@ public class StockholmItemsManager {
     }
 
     /**
-     *
      * @param context
      * @return an Array list containing the Hotel Items
      */
