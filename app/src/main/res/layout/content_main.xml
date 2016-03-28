@@ -12,7 +12,8 @@
     tools:context="com.example.emiliaaxen.stockholmguide1.MainActivity"
     tools:showIn="@layout/activity_main"
     android:orientation="vertical"
-    android:background="@android:color/black"
+    android:background="@android:color/background_dark"
+
     >
 
 
@@ -48,6 +49,10 @@
         android:layout_height="wrap_content"
         android:text="RESTAURANTS"
         android:id="@+id/button_restaurants"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
 
         />
 
@@ -56,6 +61,10 @@
         android:layout_height="wrap_content"
         android:text="ATTRACTIONS"
         android:id="@+id/button_attractions"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
 
         />
 
@@ -64,6 +73,10 @@
         android:layout_height="wrap_content"
         android:text="SHOPPING"
         android:id="@+id/button_shopping"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
         />
 
     <Button
@@ -71,7 +84,10 @@
         android:layout_height="wrap_content"
         android:text="HOTELS"
         android:id="@+id/button_hotels"
-
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
 
         />
 

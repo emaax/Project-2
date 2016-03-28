@@ -40,8 +40,6 @@ public class ResultsActivity extends AppCompatActivity {
         type = getIntent().getStringExtra(MainActivity.KEY_TYPE);
 
 
-
-
         if (type.equals(MainActivity.KEY_FAVORITES)) {
             cursor = mHelper.searchNeighborhoodByType(favorite);
         } else {
@@ -53,9 +51,8 @@ public class ResultsActivity extends AppCompatActivity {
         cursor = mHelper.searchNeighborhoodByType(type);
 
 
-
-      // Gets the query from the database helper called getNeighborhoodList, which is a cursor of all of the data                         SHOULD IT BE NAME
-        mCursorAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_activated_1, cursor, new String[]{NeighborhoodSQLiteOpenHelper.COL_ITEM_NAME}, new int[]{android.R.id.text1}, 0);
+        // Gets the query from the database helper called getNeighborhoodList, which is a cursor of all of the data                         SHOULD IT BE NAME
+        mCursorAdapter = new SimpleCursorAdapter(this, R.layout.activity_results_cardview, cursor, new String[]{NeighborhoodSQLiteOpenHelper.COL_ITEM_NAME}, new int[]{R.id.list_info_text}, 0);
         mNeighborhoodListView.setAdapter(mCursorAdapter);
 
         /*Gets the data for the individual item when it's being clicked on.This is done by passing the id column value into
@@ -74,7 +71,7 @@ public class ResultsActivity extends AppCompatActivity {
             }
         });
 
-       //
+        //
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
