@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -17,7 +15,6 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SimpleCursorAdapter;
-
 
 
 public class ResultsActivity extends AppCompatActivity {
@@ -51,17 +48,13 @@ public class ResultsActivity extends AppCompatActivity {
         cursor = mHelper.searchNeighborhoodByType(type);
 
 
-
-      // Gets the query from the database helper called getNeighborhoodList, which is a cursor of all of the data                         SHOULD IT BE NAME
+        // Gets the query from the database helper called getNeighborhoodList, which is a cursor of all of the data                         SHOULD IT BE NAME
         mCursorAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_activated_1, cursor, new String[]{NeighborhoodSQLiteOpenHelper.COL_ITEM_NAME}, new int[]{android.R.id.text1}, 0);
         mNeighborhoodListView.setAdapter(mCursorAdapter);
 
         /*Gets the data for the individual item when it's being clicked on.This is done by passing the id column value into
         the intent in the ResultsActivity in the item click listener.*/
 
-/**
- *
- */
         mNeighborhoodListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -72,7 +65,7 @@ public class ResultsActivity extends AppCompatActivity {
             }
         });
 
-       //
+        //
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
