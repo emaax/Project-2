@@ -59,20 +59,7 @@ public class MainActivity extends AppCompatActivity {
         initializeViews();
         initializeClickListeners();
     }
-
-   /* @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_main, menu);
-
-        // Associates the  searchable configuration with the SearchView
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView)
-                menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        return true;
-    }
-*/
+    
     private void initializeDB() {
         ArrayList<StockholmItem> stockholmItems = StockholmItemsManager.getStockholmItems(this);
 

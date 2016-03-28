@@ -18,6 +18,8 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SimpleCursorAdapter;
 
+
+
 public class ResultsActivity extends AppCompatActivity {
 
     private ListView mNeighborhoodListView;
@@ -39,16 +41,12 @@ public class ResultsActivity extends AppCompatActivity {
         handleIntent(getIntent());
         type = getIntent().getStringExtra(MainActivity.KEY_TYPE);
 
-
-
-
         if (type.equals(MainActivity.KEY_FAVORITES)) {
             cursor = mHelper.searchNeighborhoodByType(favorite);
         } else {
             cursor = mHelper.searchNeighborhoodByType(type);
         }
         //Create a cursor
-
 
         cursor = mHelper.searchNeighborhoodByType(type);
 
@@ -99,7 +97,6 @@ public class ResultsActivity extends AppCompatActivity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             //Creates a new search function
-
 
             cursor = mHelper.searchingNeighborhoodByName(query, type);
             mCursorAdapter.changeCursor(cursor);
