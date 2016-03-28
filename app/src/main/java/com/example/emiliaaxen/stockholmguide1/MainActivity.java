@@ -19,6 +19,10 @@ import com.example.emiliaaxen.stockholmguide1.model.StockholmItemsManager;
 
 import java.util.ArrayList;
 
+/**
+ * This is the starting point for this application, i.e the Main activity. 
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String PREF_KEY_FIRST_APP_RUN = "prefKeyFirstAppRun";
