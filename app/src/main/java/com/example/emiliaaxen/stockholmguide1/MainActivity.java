@@ -20,7 +20,7 @@ import com.example.emiliaaxen.stockholmguide1.model.StockholmItemsManager;
 import java.util.ArrayList;
 
 /**
- * This is the starting point for this application, i.e the Main activity. 
+ * This is the starting point for this application, i.e the Main activity.
  */
 
 public class MainActivity extends AppCompatActivity {
@@ -60,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
         initializeClickListeners();
     }
 
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_results, menu);
+        menuInflater.inflate(R.menu.menu_main, menu);
 
         // Associates the  searchable configuration with the SearchView
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         return true;
     }
-
+*/
     private void initializeDB() {
         ArrayList<StockholmItem> stockholmItems = StockholmItemsManager.getStockholmItems(this);
 
