@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 /**
  * Created by emiliaaxen on 16-03-18.
- * <p/>
- * This class handles the Database "items".
+ *  * This class will control creation of DB Stockholm objects
+ * This class controls and handles the creation of the Database Stockholm objects/"items".
  */
 public class StockholmItemsManager {
 

@@ -8,10 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * Created by emiliaaxen on 16-03-17.
+ *
+ * This is class holds the database of the application.
  */
 public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
-
-    //Class members:
 
 
     private static final String TAG = NeighborhoodSQLiteOpenHelper.class.getCanonicalName();
@@ -60,6 +60,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
     /**
      * Invoked when the database is created
      * Creates the Neighborhood list table when the database is created
+     *
      * @param db Database
      */
     @Override
@@ -80,7 +81,6 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
      * @param neighborhood String
      * @param description  String
      * @param image        Integer
-
      */
     //Add new itinerary list
     public long addItem(String name, String type, String address, String neighborhood, String description, int image, String webpage) {
@@ -284,7 +284,7 @@ public class NeighborhoodSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
 
-public String getWebSiteById(int id) {
+    public String getWebSiteById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(NEIGHBORHOOD_LIST_TABLE_NAME,
@@ -302,8 +302,6 @@ public String getWebSiteById(int id) {
             return "No Website Found";
         }
     }
-
-
 
 
     public void setFavoriteById(int id, boolean isFavorite) {
