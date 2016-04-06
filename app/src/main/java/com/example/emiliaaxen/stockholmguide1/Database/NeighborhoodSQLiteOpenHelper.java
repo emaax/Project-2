@@ -1,4 +1,4 @@
-package com.example.emiliaaxen.stockholmguide1;
+package com.example.emiliaaxen.stockholmguide1.Database;
 
 import android.content.ContentValues;
 import android.content.Context;

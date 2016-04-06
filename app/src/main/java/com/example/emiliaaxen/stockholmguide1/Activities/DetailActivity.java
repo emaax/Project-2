@@ -1,4 +1,4 @@
-package com.example.emiliaaxen.stockholmguide1;
+package com.example.emiliaaxen.stockholmguide1.Activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.emiliaaxen.stockholmguide1.Database.NeighborhoodSQLiteOpenHelper;
+import com.example.emiliaaxen.stockholmguide1.R;
+
 
 /**
  * This is the Detail Activity, which displays the name, image, type, address, neighborhood and
@@ -22,18 +25,15 @@ import android.widget.TextView;
 
 public class DetailActivity extends AppCompatActivity {
 
-    TextView textViewItemType;
-    TextView textViewItemName;
-    TextView textViewItemAddress;
-    TextView textViewItemLocation;
-    TextView textViewItemDescription;
-    TextView textViewItemWebSite;
-    ImageView imageViewItemImage;
-
-
+    private TextView textViewItemType;
+    private TextView textViewItemName;
+    private TextView textViewItemAddress;
+    private TextView textViewItemLocation;
+    private TextView textViewItemDescription;
+    private ImageView imageViewItemImage;
     private int itemIsClickedAsFavorite = 0;
     int id;
-
+    TextView textViewItemWebSite;
     NeighborhoodSQLiteOpenHelper helper;
     FloatingActionButton fab;
 
@@ -44,16 +44,37 @@ public class DetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        initViews();
+        setInfo();
+        setFabClickListener();
+
+
+    }
+
+
+    public void initViews() {
+
         helper = NeighborhoodSQLiteOpenHelper.getInstance(DetailActivity.this);
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
+        imageViewItemImage = (ImageView) findViewById(R.id.item_image_view);
+        textViewItemType = (TextView) findViewById(R.id.item_type_text_view);
+        textViewItemName = (TextView) findViewById(R.id.item_name_text_view);
+        textViewItemAddress = (TextView) findViewById(R.id.item_address_text_view);
+        textViewItemLocation = (TextView) findViewById(R.id.item_neighborhood_text_view);
+        textViewItemDescription = (TextView) findViewById(R.id.item_description_text_view);
+        textViewItemWebSite = (TextView) findViewById(R.id.item_website);
 
-        initViews();
+        textViewItemWebSite.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent webSiteIntent = new Intent(Intent.ACTION_VIEW);
+                webSiteIntent.setData(Uri.parse(helper.getWebSiteById(id)));
+                startActivity(webSiteIntent);
+            }
+        });
+    }
 
-
-        setInfo();
-
-
+    private void setFabClickListener() {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,32 +82,18 @@ public class DetailActivity extends AppCompatActivity {
                     itemIsClickedAsFavorite = 1;
                     fab.setImageResource(R.drawable.item_favorite);
                     helper.setFavoriteById(id, true);
-                    Snackbar.make(view, "Added to Favorites", Snackbar.LENGTH_LONG)
+                    Snackbar.make(view, R.string.fav_added_toast, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
                     itemIsClickedAsFavorite = 0;
                     fab.setImageResource(R.drawable.item_not_favorite);
                     helper.setFavoriteById(id, false);
-                    Snackbar.make(view, "Removed from Favorites", Snackbar.LENGTH_LONG)
+                    Snackbar.make(view, R.string.fav_removed_toast, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
             }
         });
-
-
     }
-
-    public void initViews() {
-        textViewItemType = (TextView) findViewById(R.id.item_type_text_view);
-        textViewItemName = (TextView) findViewById(R.id.item_name_text_view);
-        textViewItemAddress = (TextView) findViewById(R.id.item_address_text_view);
-        textViewItemLocation = (TextView) findViewById(R.id.item_neighborhood_text_view);
-        textViewItemDescription = (TextView) findViewById(R.id.item_description_text_view);
-        imageViewItemImage = (ImageView) findViewById(R.id.item_image_view);
-        textViewItemWebSite = (TextView) findViewById(R.id.item_website);
-
-    }
-
 
     public void setInfo() {
         id = getIntent().getIntExtra("id", -1);
@@ -120,15 +127,6 @@ public class DetailActivity extends AppCompatActivity {
 
         }
 
-        textViewItemWebSite.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent webSiteIntent = new Intent(Intent.ACTION_VIEW);
-                webSiteIntent.setData(Uri.parse(helper.getWebSiteById(id)));
-                startActivity(webSiteIntent);
-
-
-            }
-        });
     }
 }
 

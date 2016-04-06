@@ -1,4 +1,4 @@
-package com.example.emiliaaxen.stockholmguide1;
+package com.example.emiliaaxen.stockholmguide1.Activities;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,6 +10,9 @@ import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+
+import com.example.emiliaaxen.stockholmguide1.Database.NeighborhoodSQLiteOpenHelper;
+import com.example.emiliaaxen.stockholmguide1.R;
 
 public class FavoriteActivity extends AppCompatActivity {
 

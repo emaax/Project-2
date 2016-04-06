@@ -1,8 +1,9 @@
-package com.example.emiliaaxen.stockholmguide1.model;
+package com.example.emiliaaxen.stockholmguide1.Database;
 
 import android.content.Context;
 
 import com.example.emiliaaxen.stockholmguide1.R;
+import com.example.emiliaaxen.stockholmguide1.model.StockholmItem;
 
 import java.util.ArrayList;
 
@@ -48,7 +49,7 @@ public class StockholmItemsManager {
         saturnus.setNeighborhood(context.getString(R.string.neighborhood_norrmalmvasa));
         saturnus.setDescription(context.getString(R.string.saturnus));
         saturnus.setImageResourceId(R.drawable.saturnus);
-        saturnus.setWebsite(context.getString(R.string.sallyochsystrar_web));
+        saturnus.setWebsite(context.getString(R.string.google_web));
 
         StockholmItem sally = new StockholmItem();
         sally.setName(context.getString(R.string.sallyochsystrar_name));
@@ -60,7 +61,7 @@ public class StockholmItemsManager {
         sally.setWebsite(context.getString(R.string.sallyochsystrar_web));
 
         StockholmItem flyingelk = new StockholmItem();
-        flyingelk.setName(context.getString(R.string.flyingelk_name));
+        flyingelk.setName(context.getString(R.string.google_web));
         flyingelk.setType(TYPE_RESTAURANTS);
         flyingelk.setAddress("Malartorget 15, Stockholm");
         flyingelk.setNeighborhood(context.getString(R.string.neighborhood_sodermalm));
@@ -75,7 +76,7 @@ public class StockholmItemsManager {
         snickarbacken.setNeighborhood(context.getString(R.string.neighborhood_ostermalm));
         snickarbacken.setDescription(context.getString(R.string.snickarbacken));
         snickarbacken.setImageResourceId(R.drawable.snickarbacken);
-        snickarbacken.setWebsite(context.getString(R.string.sallyochsystrar_web));
+        snickarbacken.setWebsite(context.getString(R.string.google_web));
 
 
         StockholmItem meatballs = new StockholmItem();

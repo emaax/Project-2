@@ -4,7 +4,10 @@
     <string name="search_hint">Search by name</string>
     <string name="title_activity_results">Category Results</string>
     <string name="title_activity_detail">Details Activity</string>
+    <string name="fav_removed_toast">Removed from Favorites</string>
+    <string name="fav_added_toast">Added to Favorites</string>
 
+    
     <string name="saturnus">"People go to Saturnus to drink large bowls of hot latte with the legendary cinnamon rolls – they are the biggest, and they’ve been described in the press as the best in town. A café and lunch spot with inspiration from France, where the decor has warm colors, a stone's throw from Stureplan and close to cultural attractions such as the Zita movie theater and the National Library of Sweden.</string>
     <string name="sallyochsystrar">"Calling themselves a food-spa, Voltaire serves modern vegetarian food complemented by fish and seafood. The restaurant is located in the Åhléns City department store and is a bright and relaxed oasis for busy shoppers. There is also a store selling everything from organic tea to soap and clever tools for the kitchen. "</string>
     <string name="flyingelk">"Two-star Restaurant Frantzén's little sister, The Flying Elk, is a gastropub in Gamla Stan (Old Town) inspired by a blend of Swedish culinary tradition and British pub culture. This is the place to experience the artisanal cuisine of the starred restaurant but in a simpler, somewhat more relaxed version with more reasonable prices.Explore the extensive beer list or visit the Gaston wine bar next door."</string>
@@ -58,7 +61,10 @@
     <string name="neighborhood_sodermalm">"Sodermalm"</string>
     <string name="neighborhood_djurgarden">"Djurgarden"</string>
 
-    <string name="sallyochsystrar_web">http://www.sallyochsystrar.com"</string>
-    <string name="flyingelk_web">http://www.theflyingelk.com"</string>
-    <string name="google_web">http://www.google.com"</string>
+    <string name="sallyochsystrar_web">http://www.sallyochsystrar.se</string>
+    <string name="flyingelk_web">http://www.theflyingelk.se</string>
+    <string name="google_web">http://www.google.com</string>
+    <string name="sthlm_concert_hall_web">http://www.konserthuset.se</string>
+
+    
 </resources>

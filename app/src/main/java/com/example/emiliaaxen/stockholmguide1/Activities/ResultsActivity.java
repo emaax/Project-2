@@ -1,12 +1,10 @@
-package com.example.emiliaaxen.stockholmguide1;
+package com.example.emiliaaxen.stockholmguide1.Activities;
 
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -15,8 +13,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.SimpleCursorAdapter;
+
+import com.example.emiliaaxen.stockholmguide1.Database.NeighborhoodSQLiteOpenHelper;
+import com.example.emiliaaxen.stockholmguide1.R;
 
 public class ResultsActivity extends AppCompatActivity {
 
@@ -33,9 +33,17 @@ public class ResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_results);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
         //Gets an instance of your database helper
         mNeighborhoodListView = (ListView) findViewById(R.id.neighborhood_list_view);
+
+
+
         mHelper = NeighborhoodSQLiteOpenHelper.getInstance(ResultsActivity.this);
+
+
+
         handleIntent(getIntent());
         type = getIntent().getStringExtra(MainActivity.KEY_TYPE);
 
@@ -45,13 +53,8 @@ public class ResultsActivity extends AppCompatActivity {
         } else {
             cursor = mHelper.searchNeighborhoodByType(type);
         }
-        //Create a cursor
-
-
         cursor = mHelper.searchNeighborhoodByType(type);
-
-
-        // Gets the query from the database helper called getNeighborhoodList, which is a cursor of all of the data                         SHOULD IT BE NAME
+        // Gets the query from the database helper called getNeighborhoodList, which is a cursor of all of the data
         mCursorAdapter = new SimpleCursorAdapter(this, R.layout.activity_results_cardview, cursor, new String[]{NeighborhoodSQLiteOpenHelper.COL_ITEM_NAME}, new int[]{R.id.list_info_text}, 0);
         mNeighborhoodListView.setAdapter(mCursorAdapter);
 

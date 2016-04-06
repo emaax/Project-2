@@ -1,7 +1,5 @@
-package com.example.emiliaaxen.stockholmguide1;
+package com.example.emiliaaxen.stockholmguide1.Activities;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,13 +7,13 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuInflater;
 import android.view.View;
-import android.view.Menu;
 import android.widget.Button;
 
+import com.example.emiliaaxen.stockholmguide1.Database.NeighborhoodSQLiteOpenHelper;
+import com.example.emiliaaxen.stockholmguide1.R;
 import com.example.emiliaaxen.stockholmguide1.model.StockholmItem;
-import com.example.emiliaaxen.stockholmguide1.model.StockholmItemsManager;
+import com.example.emiliaaxen.stockholmguide1.Database.StockholmItemsManager;
 
 import java.util.ArrayList;
 
@@ -48,19 +46,24 @@ public class MainActivity extends AppCompatActivity {
 
         helper = NeighborhoodSQLiteOpenHelper.getInstance(MainActivity.this);
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
-        if (checkIfFirstTimeRunningApp()) {
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putBoolean(PREF_KEY_FIRST_APP_RUN, false);
-            editor.apply();
 
-            initializeDB();
-        }
-
+        checkFirstTimeRunningApp();
         initializeViews();
         initializeClickListeners();
     }
 
-   /* @Override
+
+    private void checkFirstTimeRunningApp() {
+        if (checkIfFirstTimeRunningApp()) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putBoolean(PREF_KEY_FIRST_APP_RUN, false);
+            editor.apply();
+            initializeDB();
+        }
+    }
+
+
+    /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
@@ -86,7 +89,8 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Returns an intent with the value set as an extra.
      * The intent will launch the class being passed in
-     * @param value String value for the key
+     *
+     * @param value         String value for the key
      * @param classToLaunch The activity that will launch
      * @return Intent to launch the activity with the extra value
      */
@@ -124,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Sets Click Listener for the Buttons that opens the #ResultsActivity.class
      * for the specific type
+     *
      * @param button Button
      * @param type   String,
      */
@@ -154,7 +159,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
 
     private boolean checkIfFirstTimeRunningApp() {
